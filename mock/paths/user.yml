@@ -1,0 +1,85 @@
+get:
+  summary: 特定のユーザーの取得
+  description: |
+    ## 説明
+
+    このAPIは、指定されたIDのユーザーを取得するために使用されます。
+
+  parameters:
+    - name: id
+      in: path
+      description: ユーザーのID
+      required: true
+      schema:
+        type: integer
+
+  responses:
+    '200':
+      description: 成功
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleUserResponse"
+    '404':
+      description: 指定されたIDのユーザーが見つかりません
+    '500':
+      description: サーバーエラーが発生しました
+
+put:
+  summary: 特定のユーザーの更新
+  description: |
+    ## 説明
+
+    このAPIは、指定されたIDのユーザーを更新するために使用されます。
+
+  parameters:
+    - name: id
+      in: path
+      description: ユーザーのID
+      required: true
+      schema:
+        type: integer
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/UserAttributes"
+
+  responses:
+    '200':
+      description: ユーザーが更新されました
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleUserResponse"
+    '400':
+      description: リクエストが無効です
+    '404':
+      description: 指定されたIDのユーザーが見つかりません
+    '500':
+      description: サーバーエラーが発生しました
+
+delete:
+  summary: 特定のユーザーの削除
+  description: |
+    ## 説明
+
+    このAPIは、指定されたIDのユーザーを削除するために使用されます。
+
+  parameters:
+    - name: id
+      in: path
+      description: ユーザーのID
+      required: true
+      schema:
+        type: integer
+
+  responses:
+    '204':
+      description: ユーザーが削除されました
+    '404':
+      description: 指定されたIDのユーザーが見つかりません
+    '500':
+      description: サーバーエラーが発生しました

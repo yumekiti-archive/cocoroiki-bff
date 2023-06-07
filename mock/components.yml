@@ -8,41 +8,92 @@ parameters:
       type: integer
 
 schemas:
-  Posts:
-    type: object
-    properties:
-      posts:
-        type: array
-        items:
-          $ref: "#/schemas/Post"
-  Post:
+  User:
     type: object
     properties:
       id:
         type: integer
-        format: int64
-        description: 投稿のID
-      title:
-        type: string
-        description: 投稿のタイトル
-      content:
-        type: string
-        description: 投稿の内容
-  NewPost:
+        description: ユーザーID
+      attributes:
+        $ref: "#/schemas/UserAttributes"
+
+  UserAttributes:
     type: object
     properties:
-      title:
+      name:
         type: string
-        description: 投稿のタイトル
-      content:
+        description: ユーザー名
+      email:
         type: string
-        description: 投稿の内容
-  UpdatedPost:
+        format: email
+        description: メールアドレス
+      birth:
+        type: string
+        format: date
+        description: 生年月日
+      age:
+        type: integer
+        description: 年齢
+      gender:
+        type: string
+        description: 性別
+      quest_role:
+        type: boolean
+        description: クエスト役割
+      last_login:
+        type: string
+        format: date-time
+        description: 最終ログイン日時
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+
+  UsersResponse:
     type: object
     properties:
-      title:
-        type: string
-        description: 更新後の投稿のタイトル
-      content:
-        type: string
-        description: 更新後の投稿の内容
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/User"
+        description: ユーザーデータの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleUserResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/User"
+        description: ユーザーデータ
+      meta:
+        type: object
+        description: メタデータ
+
+  Pagination:
+    type: object
+    properties:
+      page:
+        type: integer
+        description: 現在のページ
+      pageSize:
+        type: integer
+        description: ページあたりの件数
+      pageCount:
+        type: integer
+        description: 総ページ数
+      total:
+        type: integer
+        description: 総件数

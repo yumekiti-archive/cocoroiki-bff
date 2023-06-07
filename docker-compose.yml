@@ -40,10 +40,10 @@ services:
       SWAGGER_JSON: /mock/openapi.yml
 
   swagger-api:
-    image: stoplight/prism:3
+    image: stoplight/prism:4
     container_name: "swagger-api"
     ports:
       - "3002:4010"
-    command: mock -h 0.0.0.0 /mock/openapi.yml
+    command: mock -h 0.0.0.0 /mock/openapi.yml -d
     volumes:
       - ./mock:/mock
