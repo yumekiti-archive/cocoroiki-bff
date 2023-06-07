@@ -9,17 +9,31 @@ services:
     ports:
       - '8080:8080'
 
+  api:
+    image: node:16-alpine
+    container_name: api
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    ports:
+      - 1337:1337
+    command: >
+      sh -c "
+        yarn &&
+        yarn develop
+      "
+
   swagger-editor:
     image: swaggerapi/swagger-editor
     container_name: "swagger-editor"
     ports:
-      - "3001:8080"
+      - "3000:8080"
 
   swagger-ui:
     image: swaggerapi/swagger-ui
     container_name: "swagger-ui"
     ports:
-      - "3002:8080"
+      - "3001:8080"
     volumes:
       - ./mock:/mock
     environment:
@@ -29,7 +43,7 @@ services:
     image: stoplight/prism:3
     container_name: "swagger-api"
     ports:
-      - "3003:4010"
+      - "3002:4010"
     command: mock -h 0.0.0.0 /mock/openapi.yml
     volumes:
       - ./mock:/mock
