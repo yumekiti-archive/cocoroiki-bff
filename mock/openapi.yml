@@ -1,0 +1,19 @@
+openapi: "3.0.0"
+info:
+  title: "API"
+  version: "1.0.0"
+
+servers:
+  - url: "http://localhost:3003"
+    description: "Mock server"
+  - url: "http://localhost:1337"
+    description: "Local server"
+
+paths:
+  /posts:
+    $ref: "./paths/posts.yml"
+  /posts/{id}:
+    $ref: "./paths/post.yml"
+
+components:
+  $ref: "./components.yml"

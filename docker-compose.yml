@@ -8,3 +8,28 @@ services:
       - ./:/go/src/app
     ports:
       - '8080:8080'
+
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: "swagger-editor"
+    ports:
+      - "3001:8080"
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: "swagger-ui"
+    ports:
+      - "3002:8080"
+    volumes:
+      - ./mock:/mock
+    environment:
+      SWAGGER_JSON: /mock/openapi.yml
+
+  swagger-api:
+    image: stoplight/prism:3
+    container_name: "swagger-api"
+    ports:
+      - "3003:4010"
+    command: mock -h 0.0.0.0 /mock/openapi.yml
+    volumes:
+      - ./mock:/mock

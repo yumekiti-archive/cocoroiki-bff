@@ -1,0 +1,44 @@
+get:
+  summary: 投稿の取得
+  description: |
+    ## 説明
+
+    このAPIは、特定の条件に基づいて投稿を取得するために使用されます。
+
+  responses:
+    '200':
+      description: 成功
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/Posts"
+    '400':
+      description: リクエストが無効です
+    '500':
+      description: サーバーエラーが発生しました
+
+post:
+  summary: 投稿の作成
+  description: |
+    ## 説明
+
+    このAPIは、新しい投稿を作成するために使用されます。
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/NewPost"
+
+  responses:
+    '201':
+      description: 投稿が作成されました
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/Post"
+    '400':
+      description: リクエストが無効です
+    '500':
+      description: サーバーエラーが発生しました
