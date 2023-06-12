@@ -4,7 +4,8 @@
   "info": {
     "singularName": "app-user",
     "pluralName": "app-users",
-    "displayName": "AppUser"
+    "displayName": "AppUser",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,6 +35,11 @@
     },
     "last_login": {
       "type": "datetime"
+    },
+    "family": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::family.family"
     }
   }
 }

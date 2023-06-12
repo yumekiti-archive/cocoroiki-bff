@@ -1,0 +1,58 @@
+get:
+  summary: "IDによって家族を取得する"
+  tags:
+    - families
+  parameters:
+    - name: id
+      in: path
+      description: "家族ID"
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleFamilyResponse"
+
+put:
+  summary: "家族を更新する"
+  tags:
+    - families
+  parameters:
+    - name: id
+      in: path
+      description: "家族ID"
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Family"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleFamilyResponse"
+
+delete:
+  summary: "家族を削除する"
+  tags:
+    - families
+  parameters:
+    - name: id
+      in: path
+      description: "家族ID"
+      required: true
+      schema:
+        type: integer
+  responses:
+    '204':
+      description: "成功したレスポンス、コンテンツなし"

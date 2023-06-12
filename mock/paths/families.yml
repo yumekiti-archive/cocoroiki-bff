@@ -1,0 +1,29 @@
+get:
+  summary: "全ての家族を取得する"
+  tags:
+    - families
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/FamiliesResponse"
+      
+post:
+  summary: "新しい家族を作成する"
+  tags:
+    - families
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Family"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleFamilyResponse"

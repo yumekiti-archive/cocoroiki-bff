@@ -192,6 +192,60 @@ schemas:
         format: date-time
         description: "更新日時"
 
+  # ファミリー
+  Family:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: ファミリーID
+      attributes:
+        $ref: "#/schemas/FamilyAttributes"
+      
+  FamilyAttributes:
+    type: object
+    properties:
+      name:
+        type: string
+        description: ファミリー名
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+
+  FamiliesResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/Family"
+        description: ファミリーデータの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleFamilyResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/Family"
+        description: ファミリーデータ
+      meta:
+        type: object
+        description: メタデータ
+
   # ユーザー
   User:
     type: object
@@ -229,6 +283,9 @@ schemas:
         type: string
         format: date-time
         description: 最終ログイン日時
+      family:
+        $ref: "#/schemas/Family"
+        description: ファミリー
       createdAt:
         type: string
         format: date-time

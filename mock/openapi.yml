@@ -1,29 +1,35 @@
 openapi: "3.0.0"
 info:
-  title: "こころい木"
+  title: こころい木
   version: "1.0.0"
 
 servers:
-  - url: "http://localhost:3002"
-    description: "Mock server"
-  - url: "http://localhost:1337"
-    description: "Local server"
+  - url: http://localhost:3002
+    description: Mock server
+  - url: http://localhost:1337
+    description: Local server
 
 tags:
-  - name: "users"
-    description: "ユーザー"
-  - name: "profiles"
-    description: "プロフィール"
+  - name: users
+    description: ユーザー
+  - name: profiles
+    description: プロフィール
+  - name: families
+    description: 家族
 
 paths:
   /api/app-users:
-    $ref: "./paths/users.yml"
+    $ref: ./paths/users.yml
   /api/app-users/{id}:
-    $ref: "./paths/user.yml"
+    $ref: ./paths/user.yml
   /api/profiles:
-    $ref: "./paths/profiles.yml"
+    $ref: ./paths/profiles.yml
   /api/profiles/{id}:
-    $ref: "./paths/profile.yml"
+    $ref: ./paths/profile.yml
+  /api/families:
+    $ref: ./paths/families.yml
+  /api/families/{id}:
+    $ref: ./paths/family.yml
 
 components:
-  $ref: "./components.yml"
+  $ref: ./components.yml
