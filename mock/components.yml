@@ -31,7 +31,7 @@ schemas:
     properties:
       id:
         type: integer
-        description: イメージID
+        description: "イメージID"
       attributes:
         $ref: "#/schemas/ImageAttributes"
 
@@ -40,157 +40,103 @@ schemas:
     properties:
       name:
         type: string
-        description: "ファイル名"
+        description: ファイル名
       alternativeText:
-        type: null
-        description: "代替テキスト"
+        type: string
+        nullable: true
+        description: 代替テキスト
       caption:
-        type: null
-        description: "キャプション"
+        type: string
+        nullable: true
+        description: キャプション
       width:
         type: integer
         format: int32
-        description: "幅"
+        description: 幅
       height:
         type: integer
         format: int32
-        description: "高さ"
+        description: 高さ
       formats:
         type: object
-        description: "フォーマット"
+        description: フォーマット
         properties:
           thumbnail:
-            type: object
-            properties:
-              name:
-                type: string
-                description: "サムネイルのファイル名"
-              hash:
-                type: string
-                description: "サムネイルのハッシュ"
-              ext:
-                type: string
-                description: "サムネイルの拡張子"
-              mime:
-                type: string
-                description: "サムネイルのMIMEタイプ"
-              path:
-                type: null
-                description: "サムネイルのパス"
-              width:
-                type: integer
-                format: int32
-                description: "サムネイルの幅"
-              height:
-                type: integer
-                format: int32
-                description: "サムネイルの高さ"
-              size:
-                type: number
-                format: float
-                description: "サムネイルのサイズ"
-              url:
-                type: string
-                description: "サムネイルのURL"
+            $ref: "#/schemas/ImageFormat"
           small:
-            type: object
-            properties:
-              name:
-                type: string
-                description: "小サイズのファイル名"
-              hash:
-                type: string
-                description: "小サイズのハッシュ"
-              ext:
-                type: string
-                description: "小サイズの拡張子"
-              mime:
-                type: string
-                description: "小サイズのMIMEタイプ"
-              path:
-                type: null
-                description: "小サイズのパス"
-              width:
-                type: integer
-                format: int32
-                description: "小サイズの幅"
-              height:
-                type: integer
-                format: int32
-                description: "小サイズの高さ"
-              size:
-                type: number
-                format: float
-                description: "小サイズのサイズ"
-              url:
-                type: string
-                description: "小サイズのURL"
+            $ref: "#/schemas/ImageFormat"
           medium:
-            type: object
-            properties:
-              name:
-                type: string
-                description: "中サイズのファイル名"
-              hash:
-                type: string
-                description: "中サイズのハッシュ"
-              ext:
-                type: string
-                description: "中サイズの拡張子"
-              mime:
-                type: string
-                description: "中サイズのMIMEタイプ"
-              path:
-                type: null
-                description: "中サイズのパス"
-              width:
-                type: integer
-                format: int32
-                description: "中サイズの幅"
-              height:
-                type: integer
-                format: int32
-                description: "中サイズの高さ"
-              size:
-                type: number
-                format: float
-                description: "中サイズのサイズ"
-              url:
-                type: string
-                description: "中サイズのURL"
+            $ref: "#/schemas/ImageFormat"
       hash:
         type: string
-        description: "ハッシュ"
+        description: ハッシュ
       ext:
         type: string
-        description: "拡張子"
+        description: 拡張子
       mime:
         type: string
-        description: "MIMEタイプ"
+        description: MIMEタイプ
       size:
         type: number
         format: float
-        description: "ファイルサイズ"
+        description: ファイルサイズ
       url:
         type: string
-        description: "ファイルのURL"
+        description: ファイルのURL
       previewUrl:
-        type: null
-        description: "プレビューURL"
+        type: string
+        nullable: true
+        description: プレビューURL
       provider:
         type: string
-        description: "プロバイダー"
+        description: プロバイダー
       provider_metadata:
-        type: null
-        description: "プロバイダーのメタデータ"
+        type: object
+        nullable: true
+        description: プロバイダーのメタデータ
       createdAt:
         type: string
         format: date-time
-        description: "作成日時"
+        description: 作成日時
       updatedAt:
         type: string
         format: date-time
-        description: "更新日時"
+        description: 更新日時
+
+  ImageFormat:
+    type: object
+    properties:
+      name:
+        type: string
+        description: ファイル名
+      hash:
+        type: string
+        description: ハッシュ
+      ext:
+        type: string
+        description: 拡張子
+      mime:
+        type: string
+        description: MIMEタイプ
+      path:
+        type: string
+        nullable: true
+        description: パス
+      width:
+        type: integer
+        format: int32
+        description: 幅
+      height:
+        type: integer
+        format: int32
+        description: 高さ
+      size:
+        type: number
+        format: float
+        description: サイズ
+      url:
+        type: string
+        description: URL
 
   # ファミリー
   Family:
@@ -343,6 +289,9 @@ schemas:
       content:
         type: string
         description: プロフィール内容
+      image:
+        $ref: "#/schemas/Image"
+        description: イメージ
       createdAt:
         type: string
         format: date-time
@@ -355,9 +304,6 @@ schemas:
         type: string
         format: date-time
         description: 公開日時
-    image:
-      $ref: "#/schemas/Image"
-      description: イメージ
 
   ProfilesResponse:
     type: object
