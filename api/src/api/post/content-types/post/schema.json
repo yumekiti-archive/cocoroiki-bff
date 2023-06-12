@@ -39,10 +39,10 @@
     "like": {
       "type": "integer"
     },
-    "reactions": {
+    "comments": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::app-user.app-user"
+      "target": "api::comment.comment"
     }
   }
 }
