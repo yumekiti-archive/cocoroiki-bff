@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  title: "API"
+  title: "こころい木"
   version: "1.0.0"
 
 servers:
@@ -9,11 +9,21 @@ servers:
   - url: "http://localhost:1337"
     description: "Local server"
 
+tags:
+  - name: "users"
+    description: "ユーザー"
+  - name: "profiles"
+    description: "プロフィール"
+
 paths:
   /api/app-users:
     $ref: "./paths/users.yml"
   /api/app-users/{id}:
     $ref: "./paths/user.yml"
+  /api/profiles:
+    $ref: "./paths/profiles.yml"
+  /api/profiles/{id}:
+    $ref: "./paths/profile.yml"
 
 components:
   $ref: "./components.yml"

@@ -1,0 +1,29 @@
+get:
+  summary: "全てのプロフィールを取得する"
+  tags:
+    - profiles
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/ProfilesResponse"
+
+post:
+  summary: "新しいプロフィールを作成する"
+  tags:
+    - profiles
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Profile"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleProfileResponse"

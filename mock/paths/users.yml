@@ -1,5 +1,7 @@
 get:
   summary: ユーザー一覧の取得
+  tags:
+    - users
   description: |
     ## 説明
 
@@ -17,6 +19,8 @@ get:
 
 post:
   summary: ユーザーの作成
+  tags:
+    - users
   description: |
     ## 説明
 

@@ -8,6 +8,191 @@ parameters:
       type: integer
 
 schemas:
+  # ページネーション
+  Pagination:
+    type: object
+    properties:
+      page:
+        type: integer
+        description: 現在のページ
+      pageSize:
+        type: integer
+        description: ページあたりの件数
+      pageCount:
+        type: integer
+        description: 総ページ数
+      total:
+        type: integer
+        description: 総件数
+
+  # イメージ
+  Image:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: イメージID
+      attributes:
+        $ref: "#/schemas/ImageAttributes"
+
+  ImageAttributes:
+    type: object
+    properties:
+      name:
+        type: string
+        description: "ファイル名"
+      alternativeText:
+        type: null
+        description: "代替テキスト"
+      caption:
+        type: null
+        description: "キャプション"
+      width:
+        type: integer
+        format: int32
+        description: "幅"
+      height:
+        type: integer
+        format: int32
+        description: "高さ"
+      formats:
+        type: object
+        description: "フォーマット"
+        properties:
+          thumbnail:
+            type: object
+            properties:
+              name:
+                type: string
+                description: "サムネイルのファイル名"
+              hash:
+                type: string
+                description: "サムネイルのハッシュ"
+              ext:
+                type: string
+                description: "サムネイルの拡張子"
+              mime:
+                type: string
+                description: "サムネイルのMIMEタイプ"
+              path:
+                type: null
+                description: "サムネイルのパス"
+              width:
+                type: integer
+                format: int32
+                description: "サムネイルの幅"
+              height:
+                type: integer
+                format: int32
+                description: "サムネイルの高さ"
+              size:
+                type: number
+                format: float
+                description: "サムネイルのサイズ"
+              url:
+                type: string
+                description: "サムネイルのURL"
+          small:
+            type: object
+            properties:
+              name:
+                type: string
+                description: "小サイズのファイル名"
+              hash:
+                type: string
+                description: "小サイズのハッシュ"
+              ext:
+                type: string
+                description: "小サイズの拡張子"
+              mime:
+                type: string
+                description: "小サイズのMIMEタイプ"
+              path:
+                type: null
+                description: "小サイズのパス"
+              width:
+                type: integer
+                format: int32
+                description: "小サイズの幅"
+              height:
+                type: integer
+                format: int32
+                description: "小サイズの高さ"
+              size:
+                type: number
+                format: float
+                description: "小サイズのサイズ"
+              url:
+                type: string
+                description: "小サイズのURL"
+          medium:
+            type: object
+            properties:
+              name:
+                type: string
+                description: "中サイズのファイル名"
+              hash:
+                type: string
+                description: "中サイズのハッシュ"
+              ext:
+                type: string
+                description: "中サイズの拡張子"
+              mime:
+                type: string
+                description: "中サイズのMIMEタイプ"
+              path:
+                type: null
+                description: "中サイズのパス"
+              width:
+                type: integer
+                format: int32
+                description: "中サイズの幅"
+              height:
+                type: integer
+                format: int32
+                description: "中サイズの高さ"
+              size:
+                type: number
+                format: float
+                description: "中サイズのサイズ"
+              url:
+                type: string
+                description: "中サイズのURL"
+      hash:
+        type: string
+        description: "ハッシュ"
+      ext:
+        type: string
+        description: "拡張子"
+      mime:
+        type: string
+        description: "MIMEタイプ"
+      size:
+        type: number
+        format: float
+        description: "ファイルサイズ"
+      url:
+        type: string
+        description: "ファイルのURL"
+      previewUrl:
+        type: null
+        description: "プレビューURL"
+      provider:
+        type: string
+        description: "プロバイダー"
+      provider_metadata:
+        type: null
+        description: "プロバイダーのメタデータ"
+      createdAt:
+        type: string
+        format: date-time
+        description: "作成日時"
+      updatedAt:
+        type: string
+        format: date-time
+        description: "更新日時"
+
+  # ユーザー
   User:
     type: object
     properties:
@@ -82,18 +267,62 @@ schemas:
         type: object
         description: メタデータ
 
-  Pagination:
+  # プロフィール
+  Profile:
     type: object
     properties:
-      page:
+      id:
         type: integer
-        description: 現在のページ
-      pageSize:
-        type: integer
-        description: ページあたりの件数
-      pageCount:
-        type: integer
-        description: 総ページ数
-      total:
-        type: integer
-        description: 総件数
+        description: プロフィールID
+      attributes:
+        $ref: "#/schemas/ProfileAttributes"
+
+  ProfileAttributes:
+    type: object
+    properties:
+      user:
+        $ref: "#/schemas/User"
+        description: ユーザー
+      content:
+        type: string
+        description: プロフィール内容
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+    image:
+      $ref: "#/schemas/Image"
+      description: イメージ
+
+  ProfilesResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/Profile"
+        description: プロフィールデータの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleProfileResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/Profile"
+        description: プロフィールデータ
+      meta:
+        type: object
+        description: メタデータ

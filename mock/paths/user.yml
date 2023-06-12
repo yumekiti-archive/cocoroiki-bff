@@ -1,5 +1,7 @@
 get:
   summary: 特定のユーザーの取得
+  tags:
+    - users
   description: |
     ## 説明
 
@@ -27,6 +29,8 @@ get:
 
 put:
   summary: 特定のユーザーの更新
+  tags:
+    - users
   description: |
     ## 説明
 
@@ -63,6 +67,8 @@ put:
 
 delete:
   summary: 特定のユーザーの削除
+  tags:
+    - users
   description: |
     ## 説明
 

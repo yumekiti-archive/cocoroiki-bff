@@ -1,0 +1,58 @@
+get:
+  summary: "IDによってプロフィールを取得する"
+  tags:
+    - profiles
+  parameters:
+    - name: id
+      in: path
+      description: "プロフィールID"
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleProfileResponse"
+
+put:
+  summary: "プロフィールを更新する"
+  tags:
+    - profiles
+  parameters:
+    - name: id
+      in: path
+      description: "プロフィールID"
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Profile"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleProfileResponse"
+
+delete:
+  summary: "プロフィールを削除する"
+  tags:
+    - profiles
+  parameters:
+    - name: id
+      in: path
+      description: "プロフィールID"
+      required: true
+      schema:
+        type: integer
+  responses:
+    '204':
+      description: "成功したレスポンス、コンテンツなし"
