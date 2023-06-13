@@ -4,10 +4,12 @@ info:
   version: "1.0.0"
 
 servers:
-  - url: http://localhost:3002
+  - url: https://cocoroiki-moc.yumekiti.net/
     description: Mock server
+  - url: http://localhost:3002
+    description: Local Mock Server
   - url: http://localhost:1337
-    description: Local server
+    description: Local API Server
 
 tags:
   - name: users
