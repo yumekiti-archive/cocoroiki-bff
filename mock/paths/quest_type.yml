@@ -1,0 +1,58 @@
+get:
+  summary: "IDに一致するクエストタイプを取得する"
+  tags:
+    - quest_types
+  parameters:
+    - name: id
+      in: path
+      description: "クエストタイプID"
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleQuestTypeResponse"
+
+put:
+  summary: "クエストタイプを更新する"
+  tags:
+    - quest_types
+  parameters:
+    - name: id
+      in: path
+      description: "クエストタイプID"
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/QuestType"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleQuestTypeResponse"
+
+delete:
+  summary: "クエストタイプを削除する"
+  tags:
+    - quest_types
+  parameters:
+    - name: id
+      in: path
+      description: "クエストタイプID"
+      required: true
+      schema:
+        type: integer
+  responses:
+    '204':
+      description: "成功したレスポンス、コンテンツなし"

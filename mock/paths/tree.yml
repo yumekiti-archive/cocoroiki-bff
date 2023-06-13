@@ -1,0 +1,47 @@
+get:
+  summary: "指定した木を取得する"
+  tags:
+    - trees
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleTreeResponse"
+
+put:
+  summary: "指定した木を更新する"
+  tags:
+    - trees
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Tree"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleTreeResponse" 
+
+delete:
+  summary: "指定した木を削除する"
+  tags:
+    - trees
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleTreeResponse"   

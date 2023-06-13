@@ -1,0 +1,61 @@
+get:
+  summary: "IDでクエストを取得する"
+  tags:
+    - quests
+  parameters:
+    - name: "id"
+      in: "path"
+      description: "クエストのID"
+      required: true
+      schema:
+        type: "integer"
+        format: "int64"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleQuestResponse"
+
+put:
+  summary: "クエストを更新する"
+  tags:
+    - quests
+  parameters:
+    - name: "id"
+      in: "path"
+      description: "クエストのID"
+      required: true
+      schema:
+        type: "integer"
+        format: "int64"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Quest"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleQuestResponse"
+
+delete:
+  summary: "クエストを削除する"
+  tags:
+    - quests
+  parameters:
+    - name: "id"
+      in: "path"
+      description: "クエストのID"
+      required: true
+      schema:
+        type: "integer"
+        format: "int64"
+  responses:
+    '204':
+      description: "成功したレスポンス、コンテンツなし"

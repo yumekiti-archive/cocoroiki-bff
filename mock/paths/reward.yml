@@ -1,0 +1,61 @@
+get:
+  summary: "IDで報酬を取得する"
+  tags:
+    - rewards
+  parameters:
+    - name: "id"
+      in: "path"
+      description: "報酬のID"
+      required: true
+      schema:
+        type: "integer"
+        format: "int64"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleRewardResponse"
+
+put:
+  summary: "報酬を更新する"
+  tags:
+    - rewards
+  parameters:
+    - name: "id"
+      in: "path"
+      description: "報酬のID"
+      required: true
+      schema:
+        type: "integer"
+        format: "int64"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Reward"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleRewardResponse"
+
+delete:
+  summary: "報酬を削除する"
+  tags:
+    - rewards
+  parameters:
+    - name: "id"
+      in: "path"
+      description: "報酬のID"
+      required: true
+      schema:
+        type: "integer"
+        format: "int64"
+  responses:
+    '204':
+      description: "成功したレスポンス、コンテンツなし"

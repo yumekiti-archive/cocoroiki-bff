@@ -450,22 +450,22 @@ schemas:
         description: メタデータ
 
   # 木の状態
-  TreeState:
+  Tree:
     type: object
     properties:
       id:
         type: integer
         description: 木の状態ID
       attributes:
-        $ref: "#/schemas/TreeStateAttributes"
+        $ref: "#/schemas/TreeAttributes"
 
-  TreeStateAttributes:
+  TreeAttributes:
     type: object
     properties:
       user:
         $ref: "#/schemas/User"
         description: ユーザー
-      tree:
+      state:
         type: integer
         description: 木の状態
       wateredAt:
@@ -485,13 +485,13 @@ schemas:
         format: date-time
         description: 公開日時
 
-  TreeStatesResponse:
+  TreesResponse:
     type: object
     properties:
       data:
         type: array
         items:
-          $ref: "#/schemas/TreeState"
+          $ref: "#/schemas/Tree"
         description: 木の状態データの配列
       meta:
         type: object
@@ -500,11 +500,11 @@ schemas:
             $ref: "#/schemas/Pagination"
         description: メタデータ
 
-  SingleTreeStateResponse:
+  SingleTreeResponse:
     type: object
     properties:
       data:
-        $ref: "#/schemas/TreeState"
+        $ref: "#/schemas/Tree"
         description: 木の状態データ
       meta:
         type: object
@@ -586,6 +586,9 @@ schemas:
       content:
         type: string
         description: 内容
+      user:
+        $ref: "#/schemas/User"
+        description: ユーザー
       tree_point:
         type: integer
         description: 木のポイント
@@ -671,3 +674,28 @@ schemas:
         type: string
         format: date-time
         description: 公開日時
+
+  QuestsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/Quest"
+        description: クエストデータの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleQuestResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/Quest"
+        description: クエストデータ
+      meta:
+        type: object
+        description: メタデータ

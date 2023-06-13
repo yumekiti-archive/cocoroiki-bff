@@ -1,0 +1,29 @@
+get:
+  summary: "全てのクエストを取得する"
+  tags:
+    - quests
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/QuestsResponse"
+
+post:
+  summary: "新しいクエストを作成する"
+  tags:
+    - quests
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Quest"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleQuestResponse"

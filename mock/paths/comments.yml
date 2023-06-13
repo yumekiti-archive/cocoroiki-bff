@@ -1,0 +1,29 @@
+get:
+  summary: "全てのコメントを取得する"
+  tags:
+    - comments
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/CommentsResponse"
+
+post:
+  summary: "新しいコメントを作成する"
+  tags:
+    - comments
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Comment"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleCommentResponse"

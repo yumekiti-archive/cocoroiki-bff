@@ -1,0 +1,47 @@
+get:
+  summary: "指定したユーザーを取得する"
+  tags:
+    - posts
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SinglePostResponse"
+
+put:
+  summary: "指定したユーザーを更新する"
+  tags:
+    - posts
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Post"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SinglePostResponse"
+
+delete:
+  summary: "指定したユーザーを削除する"
+  tags:
+    - posts
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SinglePostResponse"

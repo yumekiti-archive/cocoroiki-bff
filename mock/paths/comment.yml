@@ -1,0 +1,47 @@
+get:
+  summary: "指定したコメントを取得する"
+  tags:
+    - comments
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleCommentResponse"
+
+put:
+  summary: "指定したコメントを更新する"
+  tags:
+    - comments
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Comment"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleCommentResponse"
+
+delete:
+  summary: "指定したコメントを削除する"
+  tags:
+    - comments
+  parameters:
+    - $ref: "../components.yml#/parameters/id"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleCommentResponse"

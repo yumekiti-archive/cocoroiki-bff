@@ -1,0 +1,29 @@
+get:
+  summary: "全てのクエストタイプを取得する"
+  tags:
+    - quest_types
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/QuestTypesResponse"
+
+post:
+  summary: "新しいクエストタイプを作成する"
+  tags:
+    - quest_types
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/QuestType"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleQuestTypeResponse"

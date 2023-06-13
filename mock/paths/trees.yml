@@ -1,0 +1,29 @@
+get:
+  summary: "全ての木を取得する"
+  tags:
+    - trees
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/TreesResponse"
+
+post:
+  summary: "新しい木を作成する"
+  tags:
+    - trees
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Tree"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleTreeResponse"

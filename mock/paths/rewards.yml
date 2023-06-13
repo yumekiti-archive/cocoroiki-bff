@@ -1,0 +1,29 @@
+get:
+  summary: "全ての報酬を取得する"
+  tags:
+    - rewards
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/RewardsResponse"
+
+post:
+  summary: "新しい報酬を作成する"
+  tags:
+    - rewards
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Reward"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SingleRewardResponse"

@@ -30,6 +30,30 @@ paths:
     $ref: ./paths/families.yml
   /api/families/{id}:
     $ref: ./paths/family.yml
+  /api/posts:
+    $ref: ./paths/posts.yml
+  /api/posts/{id}:
+    $ref: ./paths/post.yml
+  /api/comments:
+    $ref: ./paths/comments.yml
+  /api/comments/{id}:
+    $ref: ./paths/comment.yml
+  /api/trees:
+    $ref: ./paths/trees.yml
+  /api/trees/{id}:
+    $ref: ./paths/tree.yml
+  /api/quest_types:
+    $ref: ./paths/quest_types.yml
+  /api/quest_types/{id}:
+    $ref: ./paths/quest_type.yml
+  /api/rewards:
+    $ref: ./paths/rewards.yml
+  /api/rewards/{id}:
+    $ref: ./paths/reward.yml
+  /api/quests:
+    $ref: ./paths/quests.yml
+  /api/quests/{id}:
+    $ref: ./paths/quest.yml
 
 components:
   $ref: ./components.yml

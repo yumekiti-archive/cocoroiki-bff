@@ -1,0 +1,29 @@
+get:
+  summary: "全てのユーザーを取得する"
+  tags:
+    - posts
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/PostsResponse"
+
+post:
+  summary: "新しいユーザーを作成する"
+  tags:
+    - posts
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components.yml#/schemas/Post"
+  responses:
+    '200':
+      description: "成功したレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../components.yml#/schemas/SinglePostResponse"
