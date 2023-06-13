@@ -329,3 +329,345 @@ schemas:
       meta:
         type: object
         description: メタデータ
+
+  # 投稿
+  Post:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: 投稿ID
+      attributes:
+        $ref: "#/schemas/PostAttributes"
+
+  PostAttributes:
+    type: object
+    properties:
+      user:
+        $ref: "#/schemas/User"
+        description: ユーザー
+      content:
+        type: string
+        description: 内容
+      images:
+        type: array
+        items:
+          $ref: "#/schemas/Image"
+        description: イメージの配列
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+
+  PostsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/Post"
+        description: 投稿データの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SinglePostResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/Post"
+        description: 投稿データ
+      meta:
+        type: object
+        description: メタデータ
+
+  # コメント
+  Comment:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: コメントID
+      attributes:
+        $ref: "#/schemas/CommentAttributes"
+
+  CommentAttributes:
+    type: object
+    properties:
+      user:
+        $ref: "#/schemas/User"
+        description: ユーザー
+      content:
+        type: string
+        description: 内容
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+
+  CommentsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/Comment"
+        description: コメントデータの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleCommentResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/Comment"
+        description: コメントデータ
+      meta:
+        type: object
+        description: メタデータ
+
+  # 木の状態
+  TreeState:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: 木の状態ID
+      attributes:
+        $ref: "#/schemas/TreeStateAttributes"
+
+  TreeStateAttributes:
+    type: object
+    properties:
+      user:
+        $ref: "#/schemas/User"
+        description: ユーザー
+      tree:
+        type: integer
+        description: 木の状態
+      wateredAt:
+        type: string
+        format: date-time
+        description: 水を上げた時間
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+
+  TreeStatesResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/TreeState"
+        description: 木の状態データの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleTreeStateResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/TreeState"
+        description: 木の状態データ
+      meta:
+        type: object
+        description: メタデータ
+
+  # クエストの種類
+  QuestType:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: クエストの種類ID
+      attributes:
+        $ref: "#/schemas/QuestTypeAttributes"
+
+  QuestTypeAttributes:
+    type: object
+    properties:
+      name:
+        type: string
+        description: クエストの種類名
+      online:
+        type: boolean
+        description: オンラインかどうか
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+
+  QuestTypesResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/QuestType"
+        description: クエストの種類データの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleQuestTypeResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/QuestType"
+        description: クエストの種類データ
+      meta:
+        type: object
+        description: メタデータ
+
+  # 報酬
+  Reward:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: 報酬ID
+      attributes:
+        $ref: "#/schemas/RewardAttributes"
+
+  RewardAttributes:
+    type: object
+    properties:
+      name:
+        type: string
+        description: 報酬名
+      content:
+        type: string
+        description: 内容
+      tree_point:
+        type: integer
+        description: 木のポイント
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
+
+  RewardsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/schemas/Reward"
+        description: 報酬データの配列
+      meta:
+        type: object
+        properties:
+          pagination:
+            $ref: "#/schemas/Pagination"
+        description: メタデータ
+
+  SingleRewardResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/schemas/Reward"
+        description: 報酬データ
+      meta:
+        type: object
+        description: メタデータ
+
+  # クエスト
+  Quest:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: クエストID
+      attributes:
+        $ref: "#/schemas/QuestAttributes"
+
+  QuestAttributes:
+    type: object
+    properties:
+      title:
+        type: string
+        description: タイトル
+      content:
+        type: string
+        description: 内容
+      quest_type:
+        $ref: "#/schemas/QuestType"
+        description: クエストの種類
+      reward:
+        $ref: "#/schemas/Reward"
+        description: 報酬
+      completed:
+        type: boolean
+        description: 完了したかどうか
+      completedAt:
+        type: string
+        format: date-time
+        description: 完了した日時
+      createdAt:
+        type: string
+        format: date-time
+        description: 作成日時
+      updatedAt:
+        type: string
+        format: date-time
+        description: 更新日時
+      publishedAt:
+        type: string
+        format: date-time
+        description: 公開日時
