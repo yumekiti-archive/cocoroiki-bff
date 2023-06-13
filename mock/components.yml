@@ -354,6 +354,19 @@ schemas:
         items:
           $ref: "#/schemas/Image"
         description: イメージの配列
+      kids:
+        type: array
+        items:
+          $ref: "#/schemas/User"
+        description: 子供の配列
+      like:
+        type: integer
+        description: いいねの数
+      comments:
+        type: array
+        items:
+          $ref: "#/schemas/Comment"
+        description: コメントの配列
       createdAt:
         type: string
         format: date-time
@@ -411,6 +424,11 @@ schemas:
       content:
         type: string
         description: 内容
+      comments:
+        type: array
+        items:
+          $ref: "#/schemas/Comment"
+        description: コメントの配列
       createdAt:
         type: string
         format: date-time
@@ -449,7 +467,7 @@ schemas:
         type: object
         description: メタデータ
 
-  # 木の状態
+  # 木
   Tree:
     type: object
     properties:
@@ -462,9 +480,11 @@ schemas:
   TreeAttributes:
     type: object
     properties:
-      user:
-        $ref: "#/schemas/User"
-        description: ユーザー
+      users:
+        type: array
+        items:
+          $ref: "#/schemas/User"
+        description: ユーザーの配列
       state:
         type: integer
         description: 木の状態
@@ -589,7 +609,7 @@ schemas:
       user:
         $ref: "#/schemas/User"
         description: ユーザー
-      tree_point:
+      point:
         type: integer
         description: 木のポイント
       createdAt:

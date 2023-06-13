@@ -4,7 +4,8 @@
   "info": {
     "singularName": "reward",
     "pluralName": "rewards",
-    "displayName": "Reward"
+    "displayName": "Reward",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,17 @@
   "attributes": {
     "content": {
       "type": "richtext"
+    },
+    "name": {
+      "type": "string"
+    },
+    "point": {
+      "type": "integer"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::app-user.app-user"
     }
   }
 }
