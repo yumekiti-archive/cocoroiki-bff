@@ -24,11 +24,10 @@ func InitRouting(
 		})
 	})
 
-	// strapi
-	e.GET("/*", strapiHandler.StrapiHandler)
+	e.GET("/mock/*", openapiHandler.OpenAPIHandler)
 
 	// r := e.Group("")
 	// r.Use(middleware.JWTWithConfig(*config.JWTConfig()))
 
-	e.GET("/mock/*", openapiHandler.OpenAPIHandler)
+	e.GET("/*", strapiHandler.StrapiHandler)
 }
