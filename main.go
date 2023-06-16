@@ -8,6 +8,10 @@ import (
 )
 
 func main() {
+	// Handler
+	strapiHandler := handler.NewStrapiHandler()
+	openapiHandler := handler.NewOpenAPIHandler()
+
 	// Echo instance
 	e := echo.New()
 
@@ -21,7 +25,11 @@ func main() {
 	}))
 
 	// Router
-	handler.InitRouting(e)
+	handler.InitRouting(
+		e,
+		strapiHandler,
+		openapiHandler,
+	)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
