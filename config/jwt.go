@@ -13,7 +13,7 @@ import (
 )
 
 type JwtCustomClaims struct {
-	domain.User
+	domain.Auth
 	jwt.StandardClaims
 }
 
@@ -23,10 +23,9 @@ func MD5(text string) string {
 	return hex.EncodeToString(algorithm.Sum(nil))
 }
 
-// {id: string, pw: string}
+// {id: string}
 type Param struct {
-	ID       string `json:"id"`
-	Password string `json:"pw"`
+	ID       int `json:"id"`
 }
 
 func Login(c echo.Context) error {
@@ -38,9 +37,8 @@ func Login(c echo.Context) error {
 
 	// Set custom claims
 	claims := &JwtCustomClaims{
-		User: domain.User{
+		Auth: domain.Auth{
 			ID:       param.ID,
-			Password: param.Password,
 		},
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: 2147483647,

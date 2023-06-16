@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+
+	"github.com/yumekiti/cocoroiki-bff/interface/handler"
 )
 
 func main() {
@@ -21,9 +21,7 @@ func main() {
 	}))
 
 	// Router
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, BFF!")
-	})
+	handler.InitRouting(e)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
