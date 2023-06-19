@@ -30,4 +30,7 @@ func InitRouting(
 	// r.Use(middleware.JWTWithConfig(*config.JWTConfig()))
 
 	e.GET("/*", strapiHandler.StrapiHandler)
+	e.POST("/*", strapiHandler.StrapiHandler)
+	e.PUT("/*", strapiHandler.StrapiHandler)
+	e.DELETE("/*", strapiHandler.StrapiHandler)
 }
