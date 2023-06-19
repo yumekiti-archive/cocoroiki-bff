@@ -5,6 +5,8 @@ info:
 
 servers:
   - url: https://cocoroiki-moc.yumekiti.net/
+    description: BFF server
+  - url: https://cocoroiki-bff.yumekiti.net/
     description: Mock server
   - url: http://localhost:3002
     description: Local Mock Server
