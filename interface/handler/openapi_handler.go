@@ -20,7 +20,7 @@ func NewOpenAPIHandler() OpenAPIHandler {
 }
 
 func (h *openapiHandler) OpenAPIHandler(c echo.Context) error {
-	OpenAPIURL := "https://cocoroiki-moc.yumekiti.net/api"
+	OpenAPIURL := "https://cocoroiki-moc.yumekiti.net"
 
 	req, err := http.Get(OpenAPIURL + strings.Replace(c.Request().URL.Path, "/mock", "", 1))
 	if err != nil {

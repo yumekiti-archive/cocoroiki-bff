@@ -5,9 +5,13 @@ info:
 
 servers:
   - url: https://cocoroiki-moc.yumekiti.net/
-    description: BFF server
-  - url: https://cocoroiki-bff.yumekiti.net/
     description: Mock server
+  - url: https://cocoroiki-bff.yumekiti.net/
+    description: BFF server
+  - url: https://cocoroiki-api.yumekiti.net/
+    description: API server
+  - url: https://cocoroiki-strapi.yumekiti.net/
+    description: Strapi server
   - url: http://localhost:3002
     description: Local Mock Server
   - url: http://localhost:1337

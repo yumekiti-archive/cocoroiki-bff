@@ -19,7 +19,7 @@ func NewStrapiHandler() StrapiHandler {
 }
 
 func (h *strapiHandler) StrapiHandler(c echo.Context) error {
-	StrapiURL := "https://cocoroiki-strapi.yumekiti.net/api"
+	StrapiURL := "https://cocoroiki-strapi.yumekiti.net"
 
 	q := c.Request().URL.Query()
 	q.Add("populate", "*")
