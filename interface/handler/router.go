@@ -12,7 +12,6 @@ import (
 func InitRouting(
 	e *echo.Echo,
 	strapiHandler StrapiHandler,
-	openapiHandler OpenAPIHandler,
 ) {
 	e.POST("/signin", func(c echo.Context) error {
 		return config.Login(c)
@@ -24,13 +23,11 @@ func InitRouting(
 		})
 	})
 
-	e.GET("/mock/*", openapiHandler.OpenAPIHandler)
-
 	// r := e.Group("")
 	// r.Use(middleware.JWTWithConfig(*config.JWTConfig()))
 
-	e.GET("/*", strapiHandler.StrapiHandler)
-	e.POST("/*", strapiHandler.StrapiHandler)
-	e.PUT("/*", strapiHandler.StrapiHandler)
-	e.DELETE("/*", strapiHandler.StrapiHandler)
+	e.GET("/*", strapiHandler.GetHandler)
+	// e.POST("/*", strapiHandler.StrapiHandler)
+	// e.PUT("/*", strapiHandler.StrapiHandler)
+	// e.DELETE("/*", strapiHandler.StrapiHandler)
 }

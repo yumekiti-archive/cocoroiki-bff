@@ -9,7 +9,7 @@ import (
 )
 
 type StrapiHandler interface {
-	StrapiHandler(c echo.Context) error
+	GetHandler(c echo.Context) error
 }
 
 type strapiHandler struct{}
@@ -18,7 +18,7 @@ func NewStrapiHandler() StrapiHandler {
 	return &strapiHandler{}
 }
 
-func (h *strapiHandler) StrapiHandler(c echo.Context) error {
+func (h *strapiHandler) GetHandler(c echo.Context) error {
 	StrapiURL := "https://cocoroiki-strapi.yumekiti.net"
 
 	q := c.Request().URL.Query()
