@@ -27,7 +27,7 @@ func InitRouting(
 	// r.Use(middleware.JWTWithConfig(*config.JWTConfig()))
 
 	e.GET("/*", strapiHandler.GetHandler)
-	// e.POST("/*", strapiHandler.StrapiHandler)
-	// e.PUT("/*", strapiHandler.StrapiHandler)
-	// e.DELETE("/*", strapiHandler.StrapiHandler)
+	e.POST("/*", strapiHandler.PostHandler)
+	e.PUT("/*", strapiHandler.PutHandler)
+	e.DELETE("/*", strapiHandler.DeleteHandler)
 }
