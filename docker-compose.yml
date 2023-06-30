@@ -29,6 +29,7 @@ services:
     command: >
       sh -c "
         yarn &&
+        yarn add @strapi/plugin-documentation &&
         yarn develop
       "
 
