@@ -32,18 +32,18 @@ services:
         yarn develop
       "
 
-    db:
-      image: mysql:5.7
-      container_name: cocoroiki-db
-      environment:
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_DATABASE: cocoroiki
-        MYSQL_USER: cocoroiki
-        MYSQL_PASSWORD: password
-      volumes:
-        - ./db:/docker-entrypoint-initdb.d
-      ports:
-        - 3306:3306
+  db:
+    image: mysql:5.7
+    container_name: cocoroiki-db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cocoroiki
+      MYSQL_USER: cocoroiki
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
 
   swagger-editor:
     image: swaggerapi/swagger-editor
