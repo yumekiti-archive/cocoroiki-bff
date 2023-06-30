@@ -1,6 +1,8 @@
 dc := docker-compose -f ./docker-compose.yml
 
 up:
+	$(dc) up -d db
+	bash ./sql.sh
 	$(dc) up -d
 
 down:
