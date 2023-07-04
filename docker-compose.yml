@@ -21,7 +21,6 @@ services:
   api:
     image: node:16-alpine
     container_name: cocoroiki-api
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     working_dir: /app
     volumes:
       - ./api:/app
@@ -37,6 +36,7 @@ services:
   db:
     image: mysql:5.7
     container_name: cocoroiki-db
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: cocoroiki
