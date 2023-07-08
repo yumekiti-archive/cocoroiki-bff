@@ -30,16 +30,17 @@
     "gender": {
       "type": "string"
     },
-    "quest_role": {
-      "type": "boolean"
-    },
     "last_login": {
       "type": "datetime"
     },
-    "family": {
+    "families": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::family.family"
+    },
+    "grandparent": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
