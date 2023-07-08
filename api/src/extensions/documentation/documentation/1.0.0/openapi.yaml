@@ -7,19 +7,20 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  x-generation-date: '2023-06-30T06:25:34.282Z'
+  x-generation-date: '2023-07-08T11:02:56.536Z'
 x-strapi-config:
   path: /documentation
   plugins:
     - upload
     - users-permissions
 servers:
+  - url: https://cocoroiki-strapi.yumekiti.net/
+    description: Production server
   - url: http://localhost:1337/api
     description: Development server
 externalDocs:
   description: Find out more
-  url: >-
-    https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html
+  url: https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html
 security:
   - bearerAuth: []
 components:
@@ -76,16 +77,18 @@ components:
               type: integer
             gender:
               type: string
-            quest_role:
-              type: boolean
             last_login:
               type: string
               format: date-time
-            family:
-              oneOf:
-                - type: integer
-                - type: string
-              example: string or id
+            families:
+              type: array
+              items:
+                oneOf:
+                  - type: integer
+                  - type: string
+                example: string or id
+            grandparent:
+              type: boolean
     AppUserListResponseDataItem:
       type: object
       properties:
@@ -131,84 +134,159 @@ components:
           type: integer
         gender:
           type: string
-        quest_role:
-          type: boolean
         last_login:
           type: string
           format: date-time
-        family:
+        families:
           type: object
           properties:
             data:
-              type: object
-              properties:
-                id:
-                  type: number
-                attributes:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    createdAt:
-                      type: string
-                      format: date-time
-                    updatedAt:
-                      type: string
-                      format: date-time
-                    publishedAt:
-                      type: string
-                      format: date-time
-                    createdBy:
-                      type: object
-                      properties:
-                        data:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            attributes:
-                              type: object
-                              properties:
-                                firstname:
-                                  type: string
-                                lastname:
-                                  type: string
-                                username:
-                                  type: string
-                                email:
-                                  type: string
-                                  format: email
-                                resetPasswordToken:
-                                  type: string
-                                registrationToken:
-                                  type: string
-                                isActive:
-                                  type: boolean
-                                roles:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: array
-                                      items:
-                                        type: object
-                                        properties:
-                                          id:
-                                            type: number
-                                          attributes:
-                                            type: object
-                                            properties:
-                                              name:
-                                                type: string
-                                              code:
-                                                type: string
-                                              description:
-                                                type: string
-                                              users:
-                                                type: object
-                                                properties:
-                                                  data:
-                                                    type: array
-                                                    items:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  attributes:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+                      publishedAt:
+                        type: string
+                        format: date-time
+                      createdBy:
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              attributes:
+                                type: object
+                                properties:
+                                  firstname:
+                                    type: string
+                                  lastname:
+                                    type: string
+                                  username:
+                                    type: string
+                                  email:
+                                    type: string
+                                    format: email
+                                  resetPasswordToken:
+                                    type: string
+                                  registrationToken:
+                                    type: string
+                                  isActive:
+                                    type: boolean
+                                  roles:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            id:
+                                              type: number
+                                            attributes:
+                                              type: object
+                                              properties:
+                                                name:
+                                                  type: string
+                                                code:
+                                                  type: string
+                                                description:
+                                                  type: string
+                                                users:
+                                                  type: object
+                                                  properties:
+                                                    data:
+                                                      type: array
+                                                      items:
+                                                        type: object
+                                                        properties:
+                                                          id:
+                                                            type: number
+                                                          attributes:
+                                                            type: object
+                                                            properties: {}
+                                                permissions:
+                                                  type: object
+                                                  properties:
+                                                    data:
+                                                      type: array
+                                                      items:
+                                                        type: object
+                                                        properties:
+                                                          id:
+                                                            type: number
+                                                          attributes:
+                                                            type: object
+                                                            properties:
+                                                              action:
+                                                                type: string
+                                                              subject:
+                                                                type: string
+                                                              properties: {}
+                                                              conditions: {}
+                                                              role:
+                                                                type: object
+                                                                properties:
+                                                                  data:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties: {}
+                                                              createdAt:
+                                                                type: string
+                                                                format: date-time
+                                                              updatedAt:
+                                                                type: string
+                                                                format: date-time
+                                                              createdBy:
+                                                                type: object
+                                                                properties:
+                                                                  data:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties: {}
+                                                              updatedBy:
+                                                                type: object
+                                                                properties:
+                                                                  data:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties: {}
+                                                createdAt:
+                                                  type: string
+                                                  format: date-time
+                                                updatedAt:
+                                                  type: string
+                                                  format: date-time
+                                                createdBy:
+                                                  type: object
+                                                  properties:
+                                                    data:
                                                       type: object
                                                       properties:
                                                         id:
@@ -216,135 +294,62 @@ components:
                                                         attributes:
                                                           type: object
                                                           properties: {}
-                                              permissions:
-                                                type: object
-                                                properties:
-                                                  data:
-                                                    type: array
-                                                    items:
+                                                updatedBy:
+                                                  type: object
+                                                  properties:
+                                                    data:
                                                       type: object
                                                       properties:
                                                         id:
                                                           type: number
                                                         attributes:
                                                           type: object
-                                                          properties:
-                                                            action:
-                                                              type: string
-                                                            subject:
-                                                              type: string
-                                                            properties: {}
-                                                            conditions: {}
-                                                            role:
-                                                              type: object
-                                                              properties:
-                                                                data:
-                                                                  type: object
-                                                                  properties:
-                                                                    id:
-                                                                      type: number
-                                                                    attributes:
-                                                                      type: object
-                                                                      properties: {}
-                                                            createdAt:
-                                                              type: string
-                                                              format: date-time
-                                                            updatedAt:
-                                                              type: string
-                                                              format: date-time
-                                                            createdBy:
-                                                              type: object
-                                                              properties:
-                                                                data:
-                                                                  type: object
-                                                                  properties:
-                                                                    id:
-                                                                      type: number
-                                                                    attributes:
-                                                                      type: object
-                                                                      properties: {}
-                                                            updatedBy:
-                                                              type: object
-                                                              properties:
-                                                                data:
-                                                                  type: object
-                                                                  properties:
-                                                                    id:
-                                                                      type: number
-                                                                    attributes:
-                                                                      type: object
-                                                                      properties: {}
-                                              createdAt:
-                                                type: string
-                                                format: date-time
-                                              updatedAt:
-                                                type: string
-                                                format: date-time
-                                              createdBy:
-                                                type: object
-                                                properties:
-                                                  data:
-                                                    type: object
-                                                    properties:
-                                                      id:
-                                                        type: number
-                                                      attributes:
-                                                        type: object
-                                                        properties: {}
-                                              updatedBy:
-                                                type: object
-                                                properties:
-                                                  data:
-                                                    type: object
-                                                    properties:
-                                                      id:
-                                                        type: number
-                                                      attributes:
-                                                        type: object
-                                                        properties: {}
-                                blocked:
-                                  type: boolean
-                                preferedLanguage:
-                                  type: string
-                                createdAt:
-                                  type: string
-                                  format: date-time
-                                updatedAt:
-                                  type: string
-                                  format: date-time
-                                createdBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties: {}
-                                updatedBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties: {}
-                    updatedBy:
-                      type: object
-                      properties:
-                        data:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            attributes:
-                              type: object
-                              properties: {}
+                                                          properties: {}
+                                  blocked:
+                                    type: boolean
+                                  preferedLanguage:
+                                    type: string
+                                  createdAt:
+                                    type: string
+                                    format: date-time
+                                  updatedAt:
+                                    type: string
+                                    format: date-time
+                                  createdBy:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                          attributes:
+                                            type: object
+                                            properties: {}
+                                  updatedBy:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                          attributes:
+                                            type: object
+                                            properties: {}
+                      updatedBy:
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              attributes:
+                                type: object
+                                properties: {}
+        grandparent:
+          type: boolean
         createdAt:
           type: string
           format: date-time
@@ -498,84 +503,159 @@ components:
                                     type: integer
                                   gender:
                                     type: string
-                                  quest_role:
-                                    type: boolean
                                   last_login:
                                     type: string
                                     format: date-time
-                                  family:
+                                  families:
                                     type: object
                                     properties:
                                       data:
-                                        type: object
-                                        properties:
-                                          id:
-                                            type: number
-                                          attributes:
-                                            type: object
-                                            properties:
-                                              name:
-                                                type: string
-                                              createdAt:
-                                                type: string
-                                                format: date-time
-                                              updatedAt:
-                                                type: string
-                                                format: date-time
-                                              publishedAt:
-                                                type: string
-                                                format: date-time
-                                              createdBy:
-                                                type: object
-                                                properties:
-                                                  data:
-                                                    type: object
-                                                    properties:
-                                                      id:
-                                                        type: number
-                                                      attributes:
-                                                        type: object
-                                                        properties:
-                                                          firstname:
-                                                            type: string
-                                                          lastname:
-                                                            type: string
-                                                          username:
-                                                            type: string
-                                                          email:
-                                                            type: string
-                                                            format: email
-                                                          resetPasswordToken:
-                                                            type: string
-                                                          registrationToken:
-                                                            type: string
-                                                          isActive:
-                                                            type: boolean
-                                                          roles:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: array
-                                                                items:
-                                                                  type: object
-                                                                  properties:
-                                                                    id:
-                                                                      type: number
-                                                                    attributes:
-                                                                      type: object
-                                                                      properties:
-                                                                        name:
-                                                                          type: string
-                                                                        code:
-                                                                          type: string
-                                                                        description:
-                                                                          type: string
-                                                                        users:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: array
-                                                                              items:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            id:
+                                              type: number
+                                            attributes:
+                                              type: object
+                                              properties:
+                                                name:
+                                                  type: string
+                                                createdAt:
+                                                  type: string
+                                                  format: date-time
+                                                updatedAt:
+                                                  type: string
+                                                  format: date-time
+                                                publishedAt:
+                                                  type: string
+                                                  format: date-time
+                                                createdBy:
+                                                  type: object
+                                                  properties:
+                                                    data:
+                                                      type: object
+                                                      properties:
+                                                        id:
+                                                          type: number
+                                                        attributes:
+                                                          type: object
+                                                          properties:
+                                                            firstname:
+                                                              type: string
+                                                            lastname:
+                                                              type: string
+                                                            username:
+                                                              type: string
+                                                            email:
+                                                              type: string
+                                                              format: email
+                                                            resetPasswordToken:
+                                                              type: string
+                                                            registrationToken:
+                                                              type: string
+                                                            isActive:
+                                                              type: boolean
+                                                            roles:
+                                                              type: object
+                                                              properties:
+                                                                data:
+                                                                  type: array
+                                                                  items:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties:
+                                                                          name:
+                                                                            type: string
+                                                                          code:
+                                                                            type: string
+                                                                          description:
+                                                                            type: string
+                                                                          users:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: array
+                                                                                items:
+                                                                                  type: object
+                                                                                  properties:
+                                                                                    id:
+                                                                                      type: number
+                                                                                    attributes:
+                                                                                      type: object
+                                                                                      properties: {}
+                                                                          permissions:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: array
+                                                                                items:
+                                                                                  type: object
+                                                                                  properties:
+                                                                                    id:
+                                                                                      type: number
+                                                                                    attributes:
+                                                                                      type: object
+                                                                                      properties:
+                                                                                        action:
+                                                                                          type: string
+                                                                                        subject:
+                                                                                          type: string
+                                                                                        properties: {}
+                                                                                        conditions: {}
+                                                                                        role:
+                                                                                          type: object
+                                                                                          properties:
+                                                                                            data:
+                                                                                              type: object
+                                                                                              properties:
+                                                                                                id:
+                                                                                                  type: number
+                                                                                                attributes:
+                                                                                                  type: object
+                                                                                                  properties: {}
+                                                                                        createdAt:
+                                                                                          type: string
+                                                                                          format: date-time
+                                                                                        updatedAt:
+                                                                                          type: string
+                                                                                          format: date-time
+                                                                                        createdBy:
+                                                                                          type: object
+                                                                                          properties:
+                                                                                            data:
+                                                                                              type: object
+                                                                                              properties:
+                                                                                                id:
+                                                                                                  type: number
+                                                                                                attributes:
+                                                                                                  type: object
+                                                                                                  properties: {}
+                                                                                        updatedBy:
+                                                                                          type: object
+                                                                                          properties:
+                                                                                            data:
+                                                                                              type: object
+                                                                                              properties:
+                                                                                                id:
+                                                                                                  type: number
+                                                                                                attributes:
+                                                                                                  type: object
+                                                                                                  properties: {}
+                                                                          createdAt:
+                                                                            type: string
+                                                                            format: date-time
+                                                                          updatedAt:
+                                                                            type: string
+                                                                            format: date-time
+                                                                          createdBy:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
                                                                                 type: object
                                                                                 properties:
                                                                                   id:
@@ -583,135 +663,62 @@ components:
                                                                                   attributes:
                                                                                     type: object
                                                                                     properties: {}
-                                                                        permissions:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: array
-                                                                              items:
+                                                                          updatedBy:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
                                                                                 type: object
                                                                                 properties:
                                                                                   id:
                                                                                     type: number
                                                                                   attributes:
                                                                                     type: object
-                                                                                    properties:
-                                                                                      action:
-                                                                                        type: string
-                                                                                      subject:
-                                                                                        type: string
-                                                                                      properties: {}
-                                                                                      conditions: {}
-                                                                                      role:
-                                                                                        type: object
-                                                                                        properties:
-                                                                                          data:
-                                                                                            type: object
-                                                                                            properties:
-                                                                                              id:
-                                                                                                type: number
-                                                                                              attributes:
-                                                                                                type: object
-                                                                                                properties: {}
-                                                                                      createdAt:
-                                                                                        type: string
-                                                                                        format: date-time
-                                                                                      updatedAt:
-                                                                                        type: string
-                                                                                        format: date-time
-                                                                                      createdBy:
-                                                                                        type: object
-                                                                                        properties:
-                                                                                          data:
-                                                                                            type: object
-                                                                                            properties:
-                                                                                              id:
-                                                                                                type: number
-                                                                                              attributes:
-                                                                                                type: object
-                                                                                                properties: {}
-                                                                                      updatedBy:
-                                                                                        type: object
-                                                                                        properties:
-                                                                                          data:
-                                                                                            type: object
-                                                                                            properties:
-                                                                                              id:
-                                                                                                type: number
-                                                                                              attributes:
-                                                                                                type: object
-                                                                                                properties: {}
-                                                                        createdAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        updatedAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        createdBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                                        updatedBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                          blocked:
-                                                            type: boolean
-                                                          preferedLanguage:
-                                                            type: string
-                                                          createdAt:
-                                                            type: string
-                                                            format: date-time
-                                                          updatedAt:
-                                                            type: string
-                                                            format: date-time
-                                                          createdBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                                          updatedBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                              updatedBy:
-                                                type: object
-                                                properties:
-                                                  data:
-                                                    type: object
-                                                    properties:
-                                                      id:
-                                                        type: number
-                                                      attributes:
-                                                        type: object
-                                                        properties: {}
+                                                                                    properties: {}
+                                                            blocked:
+                                                              type: boolean
+                                                            preferedLanguage:
+                                                              type: string
+                                                            createdAt:
+                                                              type: string
+                                                              format: date-time
+                                                            updatedAt:
+                                                              type: string
+                                                              format: date-time
+                                                            createdBy:
+                                                              type: object
+                                                              properties:
+                                                                data:
+                                                                  type: object
+                                                                  properties:
+                                                                    id:
+                                                                      type: number
+                                                                    attributes:
+                                                                      type: object
+                                                                      properties: {}
+                                                            updatedBy:
+                                                              type: object
+                                                              properties:
+                                                                data:
+                                                                  type: object
+                                                                  properties:
+                                                                    id:
+                                                                      type: number
+                                                                    attributes:
+                                                                      type: object
+                                                                      properties: {}
+                                                updatedBy:
+                                                  type: object
+                                                  properties:
+                                                    data:
+                                                      type: object
+                                                      properties:
+                                                        id:
+                                                          type: number
+                                                        attributes:
+                                                          type: object
+                                                          properties: {}
+                                  grandparent:
+                                    type: boolean
                                   createdAt:
                                     type: string
                                     format: date-time
@@ -1179,84 +1186,159 @@ components:
                       type: integer
                     gender:
                       type: string
-                    quest_role:
-                      type: boolean
                     last_login:
                       type: string
                       format: date-time
-                    family:
+                    families:
                       type: object
                       properties:
                         data:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            attributes:
-                              type: object
-                              properties:
-                                name:
-                                  type: string
-                                createdAt:
-                                  type: string
-                                  format: date-time
-                                updatedAt:
-                                  type: string
-                                  format: date-time
-                                publishedAt:
-                                  type: string
-                                  format: date-time
-                                createdBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties:
-                                            firstname:
-                                              type: string
-                                            lastname:
-                                              type: string
-                                            username:
-                                              type: string
-                                            email:
-                                              type: string
-                                              format: email
-                                            resetPasswordToken:
-                                              type: string
-                                            registrationToken:
-                                              type: string
-                                            isActive:
-                                              type: boolean
-                                            roles:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: array
-                                                  items:
-                                                    type: object
-                                                    properties:
-                                                      id:
-                                                        type: number
-                                                      attributes:
-                                                        type: object
-                                                        properties:
-                                                          name:
-                                                            type: string
-                                                          code:
-                                                            type: string
-                                                          description:
-                                                            type: string
-                                                          users:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: array
-                                                                items:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              attributes:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  createdAt:
+                                    type: string
+                                    format: date-time
+                                  updatedAt:
+                                    type: string
+                                    format: date-time
+                                  publishedAt:
+                                    type: string
+                                    format: date-time
+                                  createdBy:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                          attributes:
+                                            type: object
+                                            properties:
+                                              firstname:
+                                                type: string
+                                              lastname:
+                                                type: string
+                                              username:
+                                                type: string
+                                              email:
+                                                type: string
+                                                format: email
+                                              resetPasswordToken:
+                                                type: string
+                                              registrationToken:
+                                                type: string
+                                              isActive:
+                                                type: boolean
+                                              roles:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: array
+                                                    items:
+                                                      type: object
+                                                      properties:
+                                                        id:
+                                                          type: number
+                                                        attributes:
+                                                          type: object
+                                                          properties:
+                                                            name:
+                                                              type: string
+                                                            code:
+                                                              type: string
+                                                            description:
+                                                              type: string
+                                                            users:
+                                                              type: object
+                                                              properties:
+                                                                data:
+                                                                  type: array
+                                                                  items:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties: {}
+                                                            permissions:
+                                                              type: object
+                                                              properties:
+                                                                data:
+                                                                  type: array
+                                                                  items:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties:
+                                                                          action:
+                                                                            type: string
+                                                                          subject:
+                                                                            type: string
+                                                                          properties: {}
+                                                                          conditions: {}
+                                                                          role:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: object
+                                                                                properties:
+                                                                                  id:
+                                                                                    type: number
+                                                                                  attributes:
+                                                                                    type: object
+                                                                                    properties: {}
+                                                                          createdAt:
+                                                                            type: string
+                                                                            format: date-time
+                                                                          updatedAt:
+                                                                            type: string
+                                                                            format: date-time
+                                                                          createdBy:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: object
+                                                                                properties:
+                                                                                  id:
+                                                                                    type: number
+                                                                                  attributes:
+                                                                                    type: object
+                                                                                    properties: {}
+                                                                          updatedBy:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: object
+                                                                                properties:
+                                                                                  id:
+                                                                                    type: number
+                                                                                  attributes:
+                                                                                    type: object
+                                                                                    properties: {}
+                                                            createdAt:
+                                                              type: string
+                                                              format: date-time
+                                                            updatedAt:
+                                                              type: string
+                                                              format: date-time
+                                                            createdBy:
+                                                              type: object
+                                                              properties:
+                                                                data:
                                                                   type: object
                                                                   properties:
                                                                     id:
@@ -1264,135 +1346,62 @@ components:
                                                                     attributes:
                                                                       type: object
                                                                       properties: {}
-                                                          permissions:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: array
-                                                                items:
+                                                            updatedBy:
+                                                              type: object
+                                                              properties:
+                                                                data:
                                                                   type: object
                                                                   properties:
                                                                     id:
                                                                       type: number
                                                                     attributes:
                                                                       type: object
-                                                                      properties:
-                                                                        action:
-                                                                          type: string
-                                                                        subject:
-                                                                          type: string
-                                                                        properties: {}
-                                                                        conditions: {}
-                                                                        role:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                                        createdAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        updatedAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        createdBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                                        updatedBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                          createdAt:
-                                                            type: string
-                                                            format: date-time
-                                                          updatedAt:
-                                                            type: string
-                                                            format: date-time
-                                                          createdBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                                          updatedBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                            blocked:
-                                              type: boolean
-                                            preferedLanguage:
-                                              type: string
-                                            createdAt:
-                                              type: string
-                                              format: date-time
-                                            updatedAt:
-                                              type: string
-                                              format: date-time
-                                            createdBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
-                                            updatedBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
-                                updatedBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties: {}
+                                                                      properties: {}
+                                              blocked:
+                                                type: boolean
+                                              preferedLanguage:
+                                                type: string
+                                              createdAt:
+                                                type: string
+                                                format: date-time
+                                              updatedAt:
+                                                type: string
+                                                format: date-time
+                                              createdBy:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: object
+                                                    properties:
+                                                      id:
+                                                        type: number
+                                                      attributes:
+                                                        type: object
+                                                        properties: {}
+                                              updatedBy:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: object
+                                                    properties:
+                                                      id:
+                                                        type: number
+                                                      attributes:
+                                                        type: object
+                                                        properties: {}
+                                  updatedBy:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                          attributes:
+                                            type: object
+                                            properties: {}
+                    grandparent:
+                      type: boolean
                     createdAt:
                       type: string
                       format: date-time
@@ -1878,84 +1887,159 @@ components:
                       type: integer
                     gender:
                       type: string
-                    quest_role:
-                      type: boolean
                     last_login:
                       type: string
                       format: date-time
-                    family:
+                    families:
                       type: object
                       properties:
                         data:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            attributes:
-                              type: object
-                              properties:
-                                name:
-                                  type: string
-                                createdAt:
-                                  type: string
-                                  format: date-time
-                                updatedAt:
-                                  type: string
-                                  format: date-time
-                                publishedAt:
-                                  type: string
-                                  format: date-time
-                                createdBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties:
-                                            firstname:
-                                              type: string
-                                            lastname:
-                                              type: string
-                                            username:
-                                              type: string
-                                            email:
-                                              type: string
-                                              format: email
-                                            resetPasswordToken:
-                                              type: string
-                                            registrationToken:
-                                              type: string
-                                            isActive:
-                                              type: boolean
-                                            roles:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: array
-                                                  items:
-                                                    type: object
-                                                    properties:
-                                                      id:
-                                                        type: number
-                                                      attributes:
-                                                        type: object
-                                                        properties:
-                                                          name:
-                                                            type: string
-                                                          code:
-                                                            type: string
-                                                          description:
-                                                            type: string
-                                                          users:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: array
-                                                                items:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              attributes:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  createdAt:
+                                    type: string
+                                    format: date-time
+                                  updatedAt:
+                                    type: string
+                                    format: date-time
+                                  publishedAt:
+                                    type: string
+                                    format: date-time
+                                  createdBy:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                          attributes:
+                                            type: object
+                                            properties:
+                                              firstname:
+                                                type: string
+                                              lastname:
+                                                type: string
+                                              username:
+                                                type: string
+                                              email:
+                                                type: string
+                                                format: email
+                                              resetPasswordToken:
+                                                type: string
+                                              registrationToken:
+                                                type: string
+                                              isActive:
+                                                type: boolean
+                                              roles:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: array
+                                                    items:
+                                                      type: object
+                                                      properties:
+                                                        id:
+                                                          type: number
+                                                        attributes:
+                                                          type: object
+                                                          properties:
+                                                            name:
+                                                              type: string
+                                                            code:
+                                                              type: string
+                                                            description:
+                                                              type: string
+                                                            users:
+                                                              type: object
+                                                              properties:
+                                                                data:
+                                                                  type: array
+                                                                  items:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties: {}
+                                                            permissions:
+                                                              type: object
+                                                              properties:
+                                                                data:
+                                                                  type: array
+                                                                  items:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties:
+                                                                          action:
+                                                                            type: string
+                                                                          subject:
+                                                                            type: string
+                                                                          properties: {}
+                                                                          conditions: {}
+                                                                          role:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: object
+                                                                                properties:
+                                                                                  id:
+                                                                                    type: number
+                                                                                  attributes:
+                                                                                    type: object
+                                                                                    properties: {}
+                                                                          createdAt:
+                                                                            type: string
+                                                                            format: date-time
+                                                                          updatedAt:
+                                                                            type: string
+                                                                            format: date-time
+                                                                          createdBy:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: object
+                                                                                properties:
+                                                                                  id:
+                                                                                    type: number
+                                                                                  attributes:
+                                                                                    type: object
+                                                                                    properties: {}
+                                                                          updatedBy:
+                                                                            type: object
+                                                                            properties:
+                                                                              data:
+                                                                                type: object
+                                                                                properties:
+                                                                                  id:
+                                                                                    type: number
+                                                                                  attributes:
+                                                                                    type: object
+                                                                                    properties: {}
+                                                            createdAt:
+                                                              type: string
+                                                              format: date-time
+                                                            updatedAt:
+                                                              type: string
+                                                              format: date-time
+                                                            createdBy:
+                                                              type: object
+                                                              properties:
+                                                                data:
                                                                   type: object
                                                                   properties:
                                                                     id:
@@ -1963,135 +2047,62 @@ components:
                                                                     attributes:
                                                                       type: object
                                                                       properties: {}
-                                                          permissions:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: array
-                                                                items:
+                                                            updatedBy:
+                                                              type: object
+                                                              properties:
+                                                                data:
                                                                   type: object
                                                                   properties:
                                                                     id:
                                                                       type: number
                                                                     attributes:
                                                                       type: object
-                                                                      properties:
-                                                                        action:
-                                                                          type: string
-                                                                        subject:
-                                                                          type: string
-                                                                        properties: {}
-                                                                        conditions: {}
-                                                                        role:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                                        createdAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        updatedAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        createdBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                                        updatedBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                          createdAt:
-                                                            type: string
-                                                            format: date-time
-                                                          updatedAt:
-                                                            type: string
-                                                            format: date-time
-                                                          createdBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                                          updatedBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                            blocked:
-                                              type: boolean
-                                            preferedLanguage:
-                                              type: string
-                                            createdAt:
-                                              type: string
-                                              format: date-time
-                                            updatedAt:
-                                              type: string
-                                              format: date-time
-                                            createdBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
-                                            updatedBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
-                                updatedBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties: {}
+                                                                      properties: {}
+                                              blocked:
+                                                type: boolean
+                                              preferedLanguage:
+                                                type: string
+                                              createdAt:
+                                                type: string
+                                                format: date-time
+                                              updatedAt:
+                                                type: string
+                                                format: date-time
+                                              createdBy:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: object
+                                                    properties:
+                                                      id:
+                                                        type: number
+                                                      attributes:
+                                                        type: object
+                                                        properties: {}
+                                              updatedBy:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: object
+                                                    properties:
+                                                      id:
+                                                        type: number
+                                                      attributes:
+                                                        type: object
+                                                        properties: {}
+                                  updatedBy:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                          attributes:
+                                            type: object
+                                            properties: {}
+                    grandparent:
+                      type: boolean
                     createdAt:
                       type: string
                       format: date-time
@@ -2731,55 +2742,57 @@ components:
                                   type: integer
                                 gender:
                                   type: string
-                                quest_role:
-                                  type: boolean
                                 last_login:
                                   type: string
                                   format: date-time
-                                family:
+                                families:
                                   type: object
                                   properties:
                                     data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties:
-                                            name:
-                                              type: string
-                                            createdAt:
-                                              type: string
-                                              format: date-time
-                                            updatedAt:
-                                              type: string
-                                              format: date-time
-                                            publishedAt:
-                                              type: string
-                                              format: date-time
-                                            createdBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
-                                            updatedBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                          attributes:
+                                            type: object
+                                            properties:
+                                              name:
+                                                type: string
+                                              createdAt:
+                                                type: string
+                                                format: date-time
+                                              updatedAt:
+                                                type: string
+                                                format: date-time
+                                              publishedAt:
+                                                type: string
+                                                format: date-time
+                                              createdBy:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: object
+                                                    properties:
+                                                      id:
+                                                        type: number
+                                                      attributes:
+                                                        type: object
+                                                        properties: {}
+                                              updatedBy:
+                                                type: object
+                                                properties:
+                                                  data:
+                                                    type: object
+                                                    properties:
+                                                      id:
+                                                        type: number
+                                                      attributes:
+                                                        type: object
+                                                        properties: {}
+                                grandparent:
+                                  type: boolean
                                 createdAt:
                                   type: string
                                   format: date-time
@@ -3230,383 +3243,15 @@ components:
                       type: integer
                     gender:
                       type: string
-                    quest_role:
-                      type: boolean
                     last_login:
                       type: string
                       format: date-time
-                    family:
+                    families:
                       type: object
                       properties:
                         data:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            attributes:
-                              type: object
-                              properties:
-                                name:
-                                  type: string
-                                createdAt:
-                                  type: string
-                                  format: date-time
-                                updatedAt:
-                                  type: string
-                                  format: date-time
-                                publishedAt:
-                                  type: string
-                                  format: date-time
-                                createdBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties:
-                                            firstname:
-                                              type: string
-                                            lastname:
-                                              type: string
-                                            username:
-                                              type: string
-                                            email:
-                                              type: string
-                                              format: email
-                                            resetPasswordToken:
-                                              type: string
-                                            registrationToken:
-                                              type: string
-                                            isActive:
-                                              type: boolean
-                                            roles:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: array
-                                                  items:
-                                                    type: object
-                                                    properties:
-                                                      id:
-                                                        type: number
-                                                      attributes:
-                                                        type: object
-                                                        properties:
-                                                          name:
-                                                            type: string
-                                                          code:
-                                                            type: string
-                                                          description:
-                                                            type: string
-                                                          users:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: array
-                                                                items:
-                                                                  type: object
-                                                                  properties:
-                                                                    id:
-                                                                      type: number
-                                                                    attributes:
-                                                                      type: object
-                                                                      properties: {}
-                                                          permissions:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: array
-                                                                items:
-                                                                  type: object
-                                                                  properties:
-                                                                    id:
-                                                                      type: number
-                                                                    attributes:
-                                                                      type: object
-                                                                      properties:
-                                                                        action:
-                                                                          type: string
-                                                                        subject:
-                                                                          type: string
-                                                                        properties: {}
-                                                                        conditions: {}
-                                                                        role:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                                        createdAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        updatedAt:
-                                                                          type: string
-                                                                          format: date-time
-                                                                        createdBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                                        updatedBy:
-                                                                          type: object
-                                                                          properties:
-                                                                            data:
-                                                                              type: object
-                                                                              properties:
-                                                                                id:
-                                                                                  type: number
-                                                                                attributes:
-                                                                                  type: object
-                                                                                  properties: {}
-                                                          createdAt:
-                                                            type: string
-                                                            format: date-time
-                                                          updatedAt:
-                                                            type: string
-                                                            format: date-time
-                                                          createdBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                                          updatedBy:
-                                                            type: object
-                                                            properties:
-                                                              data:
-                                                                type: object
-                                                                properties:
-                                                                  id:
-                                                                    type: number
-                                                                  attributes:
-                                                                    type: object
-                                                                    properties: {}
-                                            blocked:
-                                              type: boolean
-                                            preferedLanguage:
-                                              type: string
-                                            createdAt:
-                                              type: string
-                                              format: date-time
-                                            updatedAt:
-                                              type: string
-                                              format: date-time
-                                            createdBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
-                                            updatedBy:
-                                              type: object
-                                              properties:
-                                                data:
-                                                  type: object
-                                                  properties:
-                                                    id:
-                                                      type: number
-                                                    attributes:
-                                                      type: object
-                                                      properties: {}
-                                updatedBy:
-                                  type: object
-                                  properties:
-                                    data:
-                                      type: object
-                                      properties:
-                                        id:
-                                          type: number
-                                        attributes:
-                                          type: object
-                                          properties: {}
-                    createdAt:
-                      type: string
-                      format: date-time
-                    updatedAt:
-                      type: string
-                      format: date-time
-                    publishedAt:
-                      type: string
-                      format: date-time
-                    createdBy:
-                      type: object
-                      properties:
-                        data:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            attributes:
-                              type: object
-                              properties: {}
-                    updatedBy:
-                      type: object
-                      properties:
-                        data:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            attributes:
-                              type: object
-                              properties: {}
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        publishedAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: object
-          properties:
-            data:
-              type: object
-              properties:
-                id:
-                  type: number
-                attributes:
-                  type: object
-                  properties: {}
-        updatedBy:
-          type: object
-          properties:
-            data:
-              type: object
-              properties:
-                id:
-                  type: number
-                attributes:
-                  type: object
-                  properties: {}
-    RewardResponseDataObject:
-      type: object
-      properties:
-        id:
-          type: number
-        attributes:
-          $ref: '#/components/schemas/Reward'
-    RewardResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RewardResponseDataObject'
-        meta:
-          type: object
-    TreeRequest:
-      type: object
-      required:
-        - data
-      properties:
-        data:
-          type: object
-          properties:
-            users:
-              type: array
-              items:
-                oneOf:
-                  - type: integer
-                  - type: string
-                example: string or id
-            state:
-              type: integer
-            wateredAt:
-              type: string
-              format: date-time
-    TreeListResponseDataItem:
-      type: object
-      properties:
-        id:
-          type: number
-        attributes:
-          $ref: '#/components/schemas/Tree'
-    TreeListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TreeListResponseDataItem'
-        meta:
-          type: object
-          properties:
-            pagination:
-              type: object
-              properties:
-                page:
-                  type: integer
-                pageSize:
-                  type: integer
-                  minimum: 25
-                pageCount:
-                  type: integer
-                  maximum: 1
-                total:
-                  type: integer
-    Tree:
-      type: object
-      properties:
-        users:
-          type: object
-          properties:
-            data:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: number
-                  attributes:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      email:
-                        type: string
-                        format: email
-                      birth:
-                        type: string
-                        format: date
-                      age:
-                        type: integer
-                      gender:
-                        type: string
-                      quest_role:
-                        type: boolean
-                      last_login:
-                        type: string
-                        format: date-time
-                      family:
-                        type: object
-                        properties:
-                          data:
+                          type: array
+                          items:
                             type: object
                             properties:
                               id:
@@ -3812,6 +3457,378 @@ components:
                                           attributes:
                                             type: object
                                             properties: {}
+                    grandparent:
+                      type: boolean
+                    createdAt:
+                      type: string
+                      format: date-time
+                    updatedAt:
+                      type: string
+                      format: date-time
+                    publishedAt:
+                      type: string
+                      format: date-time
+                    createdBy:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            attributes:
+                              type: object
+                              properties: {}
+                    updatedBy:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            attributes:
+                              type: object
+                              properties: {}
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        publishedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: number
+                attributes:
+                  type: object
+                  properties: {}
+        updatedBy:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: number
+                attributes:
+                  type: object
+                  properties: {}
+    RewardResponseDataObject:
+      type: object
+      properties:
+        id:
+          type: number
+        attributes:
+          $ref: '#/components/schemas/Reward'
+    RewardResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RewardResponseDataObject'
+        meta:
+          type: object
+    TreeRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          properties:
+            users:
+              type: array
+              items:
+                oneOf:
+                  - type: integer
+                  - type: string
+                example: string or id
+            state:
+              type: integer
+            wateredAt:
+              type: string
+              format: date-time
+    TreeListResponseDataItem:
+      type: object
+      properties:
+        id:
+          type: number
+        attributes:
+          $ref: '#/components/schemas/Tree'
+    TreeListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreeListResponseDataItem'
+        meta:
+          type: object
+          properties:
+            pagination:
+              type: object
+              properties:
+                page:
+                  type: integer
+                pageSize:
+                  type: integer
+                  minimum: 25
+                pageCount:
+                  type: integer
+                  maximum: 1
+                total:
+                  type: integer
+    Tree:
+      type: object
+      properties:
+        users:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  attributes:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                        format: email
+                      birth:
+                        type: string
+                        format: date
+                      age:
+                        type: integer
+                      gender:
+                        type: string
+                      last_login:
+                        type: string
+                        format: date-time
+                      families:
+                        type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: number
+                                attributes:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                    createdAt:
+                                      type: string
+                                      format: date-time
+                                    updatedAt:
+                                      type: string
+                                      format: date-time
+                                    publishedAt:
+                                      type: string
+                                      format: date-time
+                                    createdBy:
+                                      type: object
+                                      properties:
+                                        data:
+                                          type: object
+                                          properties:
+                                            id:
+                                              type: number
+                                            attributes:
+                                              type: object
+                                              properties:
+                                                firstname:
+                                                  type: string
+                                                lastname:
+                                                  type: string
+                                                username:
+                                                  type: string
+                                                email:
+                                                  type: string
+                                                  format: email
+                                                resetPasswordToken:
+                                                  type: string
+                                                registrationToken:
+                                                  type: string
+                                                isActive:
+                                                  type: boolean
+                                                roles:
+                                                  type: object
+                                                  properties:
+                                                    data:
+                                                      type: array
+                                                      items:
+                                                        type: object
+                                                        properties:
+                                                          id:
+                                                            type: number
+                                                          attributes:
+                                                            type: object
+                                                            properties:
+                                                              name:
+                                                                type: string
+                                                              code:
+                                                                type: string
+                                                              description:
+                                                                type: string
+                                                              users:
+                                                                type: object
+                                                                properties:
+                                                                  data:
+                                                                    type: array
+                                                                    items:
+                                                                      type: object
+                                                                      properties:
+                                                                        id:
+                                                                          type: number
+                                                                        attributes:
+                                                                          type: object
+                                                                          properties: {}
+                                                              permissions:
+                                                                type: object
+                                                                properties:
+                                                                  data:
+                                                                    type: array
+                                                                    items:
+                                                                      type: object
+                                                                      properties:
+                                                                        id:
+                                                                          type: number
+                                                                        attributes:
+                                                                          type: object
+                                                                          properties:
+                                                                            action:
+                                                                              type: string
+                                                                            subject:
+                                                                              type: string
+                                                                            properties: {}
+                                                                            conditions: {}
+                                                                            role:
+                                                                              type: object
+                                                                              properties:
+                                                                                data:
+                                                                                  type: object
+                                                                                  properties:
+                                                                                    id:
+                                                                                      type: number
+                                                                                    attributes:
+                                                                                      type: object
+                                                                                      properties: {}
+                                                                            createdAt:
+                                                                              type: string
+                                                                              format: date-time
+                                                                            updatedAt:
+                                                                              type: string
+                                                                              format: date-time
+                                                                            createdBy:
+                                                                              type: object
+                                                                              properties:
+                                                                                data:
+                                                                                  type: object
+                                                                                  properties:
+                                                                                    id:
+                                                                                      type: number
+                                                                                    attributes:
+                                                                                      type: object
+                                                                                      properties: {}
+                                                                            updatedBy:
+                                                                              type: object
+                                                                              properties:
+                                                                                data:
+                                                                                  type: object
+                                                                                  properties:
+                                                                                    id:
+                                                                                      type: number
+                                                                                    attributes:
+                                                                                      type: object
+                                                                                      properties: {}
+                                                              createdAt:
+                                                                type: string
+                                                                format: date-time
+                                                              updatedAt:
+                                                                type: string
+                                                                format: date-time
+                                                              createdBy:
+                                                                type: object
+                                                                properties:
+                                                                  data:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties: {}
+                                                              updatedBy:
+                                                                type: object
+                                                                properties:
+                                                                  data:
+                                                                    type: object
+                                                                    properties:
+                                                                      id:
+                                                                        type: number
+                                                                      attributes:
+                                                                        type: object
+                                                                        properties: {}
+                                                blocked:
+                                                  type: boolean
+                                                preferedLanguage:
+                                                  type: string
+                                                createdAt:
+                                                  type: string
+                                                  format: date-time
+                                                updatedAt:
+                                                  type: string
+                                                  format: date-time
+                                                createdBy:
+                                                  type: object
+                                                  properties:
+                                                    data:
+                                                      type: object
+                                                      properties:
+                                                        id:
+                                                          type: number
+                                                        attributes:
+                                                          type: object
+                                                          properties: {}
+                                                updatedBy:
+                                                  type: object
+                                                  properties:
+                                                    data:
+                                                      type: object
+                                                      properties:
+                                                        id:
+                                                          type: number
+                                                        attributes:
+                                                          type: object
+                                                          properties: {}
+                                    updatedBy:
+                                      type: object
+                                      properties:
+                                        data:
+                                          type: object
+                                          properties:
+                                            id:
+                                              type: number
+                                            attributes:
+                                              type: object
+                                              properties: {}
+                      grandparent:
+                        type: boolean
                       createdAt:
                         type: string
                         format: date-time
@@ -3985,8 +4002,7 @@ components:
       properties:
         jwt:
           type: string
-          example: >-
-            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
         user:
           $ref: '#/components/schemas/Users-Permissions-User'
     Users-Permissions-PermissionsTree:
@@ -6914,22 +6930,16 @@ paths:
               properties:
                 path:
                   type: string
-                  description: >-
-                    The folder where the file(s) will be uploaded to (only
-                    supported on strapi-provider-upload-aws-s3).
+                  description: The folder where the file(s) will be uploaded to (only supported on strapi-provider-upload-aws-s3).
                 refId:
                   type: string
                   description: The ID of the entry which the file(s) will be linked to
                 ref:
                   type: string
-                  description: >-
-                    The unique ID (uid) of the model which the file(s) will be
-                    linked to (api::restaurant.restaurant).
+                  description: The unique ID (uid) of the model which the file(s) will be linked to (api::restaurant.restaurant).
                 field:
                   type: string
-                  description: >-
-                    The field of the entry which the file(s) will be precisely
-                    linked to.
+                  description: The field of the entry which the file(s) will be precisely linked to.
                 files:
                   type: array
                   items:
@@ -6940,10 +6950,11 @@ paths:
       parameters:
         - name: id
           in: path
-          description: File id
+          description: ''
+          deprecated: false
           required: true
           schema:
-            type: string
+            type: number
       description: Upload file information
       responses:
         '200':
@@ -7040,9 +7051,7 @@ paths:
       tags:
         - Users-Permissions - Auth
       summary: Login with a provider
-      description: >-
-        Redirects to provider login before being redirect to
-        /auth/{provider}/callback
+      description: Redirects to provider login before being redirect to /auth/{provider}/callback
       responses:
         '301':
           description: Redirect response
@@ -7786,11 +7795,9 @@ tags:
     description: Authentication endpoints
     externalDocs:
       description: Find out more
-      url: >-
-        https://docs.strapi.io/developer-docs/latest/plugins/users-permissions.html
+      url: https://docs.strapi.io/developer-docs/latest/plugins/users-permissions.html
   - name: Users-Permissions - Users & Roles
     description: Users, roles, and permissions endpoints
     externalDocs:
       description: Find out more
-      url: >-
-        https://docs.strapi.io/developer-docs/latest/plugins/users-permissions.html
+      url: https://docs.strapi.io/developer-docs/latest/plugins/users-permissions.html
