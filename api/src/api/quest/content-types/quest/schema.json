@@ -15,21 +15,10 @@
     "content": {
       "type": "richtext"
     },
-    "completed": {
-      "type": "boolean"
-    },
     "quest_kinds": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::quest-kind.quest-kind"
-    },
-    "reward": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::reward.reward"
-    },
-    "completedAt": {
-      "type": "datetime"
     }
   }
 }

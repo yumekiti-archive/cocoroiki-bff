@@ -4,7 +4,8 @@
   "info": {
     "singularName": "family",
     "pluralName": "families",
-    "displayName": "Family"
+    "displayName": "Family",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,11 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "kids": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::app-user.app-user"
     }
   }
 }

@@ -4,14 +4,15 @@
   "info": {
     "singularName": "tree",
     "pluralName": "trees",
-    "displayName": "Tree"
+    "displayName": "Tree",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "users": {
+    "parent": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::app-user.app-user"
@@ -21,6 +22,11 @@
     },
     "wateredAt": {
       "type": "datetime"
+    },
+    "grandparent": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::app-user.app-user"
     }
   }
 }
