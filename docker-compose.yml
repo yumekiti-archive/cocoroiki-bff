@@ -30,13 +30,14 @@ services:
       sh -c "
         yarn &&
         yarn add @strapi/plugin-documentation &&
+        yarn add strapi-plugin-timezone-select &&
         yarn develop
       "
 
   db:
     image: mysql:5.7
     container_name: cocoroiki-db
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone=Asia/Tokyo
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: cocoroiki
