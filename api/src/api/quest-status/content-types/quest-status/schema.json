@@ -12,16 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "quest": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::quest.quest"
-    },
-    "kid": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::app-user.app-user"
-    },
     "completedAt": {
       "type": "datetime"
     },
@@ -32,6 +22,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::app-user.app-user"
+    },
+    "tree": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tree.tree"
     }
   }
 }

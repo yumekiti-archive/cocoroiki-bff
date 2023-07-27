@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-07-13T07:28:21.094Z"
+    "x-generation-date": "2023-07-27T02:55:58.836Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4965,28 +4965,6 @@
           "data": {
             "type": "object",
             "properties": {
-              "quest": {
-                "oneOf": [
-                  {
-                    "type": "integer"
-                  },
-                  {
-                    "type": "string"
-                  }
-                ],
-                "example": "string or id"
-              },
-              "kid": {
-                "oneOf": [
-                  {
-                    "type": "integer"
-                  },
-                  {
-                    "type": "string"
-                  }
-                ],
-                "example": "string or id"
-              },
               "completedAt": {
                 "type": "string",
                 "format": "date-time"
@@ -4995,6 +4973,17 @@
                 "type": "boolean"
               },
               "grandparent": {
+                "oneOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "example": "string or id"
+              },
+              "tree": {
                 "oneOf": [
                   {
                     "type": "integer"
@@ -5058,7 +5047,14 @@
       "QuestStatus": {
         "type": "object",
         "properties": {
-          "quest": {
+          "completedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "doing": {
+            "type": "boolean"
+          },
+          "grandparent": {
             "type": "object",
             "properties": {
               "data": {
@@ -5070,10 +5066,28 @@
                   "attributes": {
                     "type": "object",
                     "properties": {
-                      "content": {
+                      "name": {
                         "type": "string"
                       },
-                      "quest_kinds": {
+                      "email": {
+                        "type": "string",
+                        "format": "email"
+                      },
+                      "birth": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "age": {
+                        "type": "integer"
+                      },
+                      "gender": {
+                        "type": "string"
+                      },
+                      "last_login": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "families": {
                         "type": "object",
                         "properties": {
                           "data": {
@@ -5090,8 +5104,25 @@
                                     "name": {
                                       "type": "string"
                                     },
-                                    "online": {
-                                      "type": "boolean"
+                                    "kids": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -5397,181 +5428,6 @@
                           }
                         }
                       },
-                      "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "publishedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "createdBy": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "attributes": {
-                                "type": "object",
-                                "properties": {}
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "updatedBy": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "attributes": {
-                                "type": "object",
-                                "properties": {}
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "kid": {
-            "type": "object",
-            "properties": {
-              "data": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "attributes": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string",
-                        "format": "email"
-                      },
-                      "birth": {
-                        "type": "string",
-                        "format": "date"
-                      },
-                      "age": {
-                        "type": "integer"
-                      },
-                      "gender": {
-                        "type": "string"
-                      },
-                      "last_login": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "families": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "attributes": {
-                                  "type": "object",
-                                  "properties": {
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "kids": {
-                                      "type": "object",
-                                      "properties": {
-                                        "data": {
-                                          "type": "array",
-                                          "items": {
-                                            "type": "object",
-                                            "properties": {
-                                              "id": {
-                                                "type": "number"
-                                              },
-                                              "attributes": {
-                                                "type": "object",
-                                                "properties": {}
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
-                                    "createdAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "updatedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "publishedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "createdBy": {
-                                      "type": "object",
-                                      "properties": {
-                                        "data": {
-                                          "type": "object",
-                                          "properties": {
-                                            "id": {
-                                              "type": "number"
-                                            },
-                                            "attributes": {
-                                              "type": "object",
-                                              "properties": {}
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
-                                    "updatedBy": {
-                                      "type": "object",
-                                      "properties": {
-                                        "data": {
-                                          "type": "object",
-                                          "properties": {
-                                            "id": {
-                                              "type": "number"
-                                            },
-                                            "attributes": {
-                                              "type": "object",
-                                              "properties": {}
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
                       "grandparent": {
                         "type": "boolean"
                       },
@@ -5627,14 +5483,7 @@
               }
             }
           },
-          "completedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "doing": {
-            "type": "boolean"
-          },
-          "grandparent": {
+          "tree": {
             "type": "object",
             "properties": {
               "data": {
@@ -5645,7 +5494,101 @@
                   },
                   "attributes": {
                     "type": "object",
-                    "properties": {}
+                    "properties": {
+                      "parent": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "attributes": {
+                                  "type": "object",
+                                  "properties": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "state": {
+                        "type": "integer"
+                      },
+                      "wateredAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "grandparent": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "attributes": {
+                                  "type": "object",
+                                  "properties": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "publishedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "createdBy": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "updatedBy": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
