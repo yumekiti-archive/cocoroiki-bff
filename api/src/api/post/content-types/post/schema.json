@@ -36,13 +36,15 @@
         "audios"
       ]
     },
-    "like": {
-      "type": "integer"
-    },
     "comments": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::comment.comment"
+    },
+    "app_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::app-user.app-user"
     }
   }
 }
