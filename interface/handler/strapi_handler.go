@@ -4,6 +4,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"encoding/json"
+	"time"
 
 	"github.com/labstack/echo/v4"
 )
@@ -37,6 +39,43 @@ func (h *strapiHandler) GetHandler(c echo.Context) error {
 	body, err := ioutil.ReadAll(req.Body)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	if c.Request().URL.Path == "/api/posts" {
+		// Parse the response data
+		var responseData map[string]interface{}
+		err = json.Unmarshal(body, &responseData)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		// Update createdAt and updatedAt fields
+		data := responseData["data"].([]interface{})
+		for _, v := range data {
+			attributes := v.(map[string]interface{})["attributes"].(map[string]interface{})
+			// add 9 hours to createdAt and updatedAt
+			createdAt := attributes["createdAt"].(string)
+			t, err := time.Parse(time.RFC3339, createdAt)
+			if err != nil {
+				log.Fatal(err)
+			}
+			attributes["createdAt"] = t.Add(9 * time.Hour).Format(time.RFC3339)
+
+			updatedAt := attributes["updatedAt"].(string)
+			t, err = time.Parse(time.RFC3339, updatedAt)
+			if err != nil {
+				log.Fatal(err)
+			}
+			attributes["updatedAt"] = t.Add(9 * time.Hour).Format(time.RFC3339)
+		}
+
+		// Convert the updated data back to JSON
+		updatedBody, err := json.Marshal(responseData)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		return c.JSONBlob(req.StatusCode, updatedBody)
 	}
 
 	return c.JSONBlob(req.StatusCode, body)
