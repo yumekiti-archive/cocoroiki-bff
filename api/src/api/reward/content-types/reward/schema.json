@@ -26,7 +26,7 @@
       "relation": "oneToOne",
       "target": "api::app-user.app-user"
     },
-    "Kinds": {
+    "kinds": {
       "type": "string"
     }
   }

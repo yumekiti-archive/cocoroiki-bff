@@ -19,6 +19,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::app-user.app-user"
+    },
+    "grandparents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::app-user.app-user"
     }
   }
 }

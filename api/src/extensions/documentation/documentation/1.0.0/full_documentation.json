@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-07-31T07:41:23.287Z"
+    "x-generation-date": "2023-10-03T01:28:49.954Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -591,6 +591,26 @@
                             }
                           }
                         },
+                        "grandparents": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "attributes": {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -898,6 +918,26 @@
                                                     "type": "string"
                                                   },
                                                   "kids": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "id": {
+                                                              "type": "number"
+                                                            },
+                                                            "attributes": {
+                                                              "type": "object",
+                                                              "properties": {}
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "grandparents": {
                                                     "type": "object",
                                                     "properties": {
                                                       "data": {
@@ -1441,6 +1481,20 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "grandparents": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
               }
             }
           }
@@ -1551,6 +1605,26 @@
                                         "type": "string"
                                       },
                                       "kids": {
+                                        "type": "object",
+                                        "properties": {
+                                          "data": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "id": {
+                                                  "type": "number"
+                                                },
+                                                "attributes": {
+                                                  "type": "object",
+                                                  "properties": {}
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "grandparents": {
                                         "type": "object",
                                         "properties": {
                                           "data": {
@@ -1930,6 +2004,26 @@
               }
             }
           },
+          "grandparents": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -2183,6 +2277,26 @@
                                       "type": "string"
                                     },
                                     "kids": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "grandparents": {
                                       "type": "object",
                                       "properties": {
                                         "data": {
@@ -3292,6 +3406,26 @@
                                       "type": "string"
                                     },
                                     "kids": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "grandparents": {
                                       "type": "object",
                                       "properties": {
                                         "data": {
@@ -5152,6 +5286,26 @@
                                         }
                                       }
                                     },
+                                    "grandparents": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -5721,7 +5875,7 @@
                 ],
                 "example": "string or id"
               },
-              "Kinds": {
+              "kinds": {
                 "type": "string"
               }
             }
@@ -5837,6 +5991,26 @@
                                       "type": "string"
                                     },
                                     "kids": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "grandparents": {
                                       "type": "object",
                                       "properties": {
                                         "data": {
@@ -6215,7 +6389,7 @@
               }
             }
           },
-          "Kinds": {
+          "kinds": {
             "type": "string"
           },
           "createdAt": {
@@ -6438,6 +6612,26 @@
                                         "type": "string"
                                       },
                                       "kids": {
+                                        "type": "object",
+                                        "properties": {
+                                          "data": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "id": {
+                                                  "type": "number"
+                                                },
+                                                "attributes": {
+                                                  "type": "object",
+                                                  "properties": {}
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "grandparents": {
                                         "type": "object",
                                         "properties": {
                                           "data": {
