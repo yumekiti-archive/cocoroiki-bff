@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"github.com/pusher/pusher-http-go/v5"
 
 	"github.com/labstack/echo/v4"
 )
@@ -22,6 +23,13 @@ func NewStrapiHandler() StrapiHandler {
 }
 
 const StrapiURL = "http://cocoroiki-cms:1337"
+
+pusherClient := pusher.Client{
+	AppID:   "APP_ID",
+	Key:     "APP_KEY",
+	Secret:  "APP_SECRET",
+	Cluster: "APP_CLUSTER",
+}
 
 func (h *strapiHandler) GetHandler(c echo.Context) error {
 	q := c.Request().URL.Query()
@@ -54,6 +62,14 @@ func (h *strapiHandler) PostHandler(c echo.Context) error {
 		log.Fatal(err)
 	}
 
+	if c.Request().URL.Path == "/api/quest-statuses" {
+		data := map[string]string{"status": "false"}
+		err := pusherClient.Trigger("my-channel", "my-event", data)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
 	return c.JSONBlob(req.StatusCode, body)
 }
 
@@ -75,6 +91,14 @@ func (h *strapiHandler) PutHandler(c echo.Context) error {
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	if c.Request().URL.Path == "/api/quest-statuses" {
+		data := map[string]string{"status": "true"}
+		err := pusherClient.Trigger("my-channel", "my-event", data)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	return c.JSONBlob(res.StatusCode, body)
