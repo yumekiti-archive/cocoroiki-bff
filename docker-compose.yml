@@ -18,7 +18,7 @@ services:
     volumes:
       - ./:/go/src/app
 
-  api:
+  cocoroiki-cms:
     image: node:16-alpine
     container_name: cocoroiki-api
     working_dir: /app

@@ -27,7 +27,7 @@ func InitRouting(
 	// r := e.Group("")
 	// r.Use(middleware.JWTWithConfig(*config.JWTConfig()))
 
-	e.GET("/api/app-users", fastapiHandler.GetAppUsersHandler)
+	// e.GET("/api/app-users", fastapiHandler.GetAppUsersHandler)
 	e.GET("/*", strapiHandler.GetHandler)
 	e.POST("/*", strapiHandler.PostHandler)
 	e.PUT("/*", strapiHandler.PutHandler)
