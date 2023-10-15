@@ -10,6 +10,7 @@ import (
 func main() {
 	// Handler
 	strapiHandler := handler.NewStrapiHandler()
+	fastapiHandler := handler.NewFastapiHandler()
 
 	// Echo instance
 	e := echo.New()
@@ -27,6 +28,7 @@ func main() {
 	handler.InitRouting(
 		e,
 		strapiHandler,
+		fastapiHandler,
 	)
 
 	// Start server
