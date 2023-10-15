@@ -4,9 +4,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"github.com/pusher/pusher-http-go/v5"
 
 	"github.com/labstack/echo/v4"
+	"github.com/yumekiti/cocoroiki-bff/config"
 )
 
 type StrapiHandler interface {
@@ -23,13 +23,6 @@ func NewStrapiHandler() StrapiHandler {
 }
 
 const StrapiURL = "http://cocoroiki-cms:1337"
-
-pusherClient := pusher.Client{
-	AppID:   "APP_ID",
-	Key:     "APP_KEY",
-	Secret:  "APP_SECRET",
-	Cluster: "APP_CLUSTER",
-}
 
 func (h *strapiHandler) GetHandler(c echo.Context) error {
 	q := c.Request().URL.Query()
@@ -64,7 +57,7 @@ func (h *strapiHandler) PostHandler(c echo.Context) error {
 
 	if c.Request().URL.Path == "/api/quest-statuses" {
 		data := map[string]string{"status": "false"}
-		err := pusherClient.Trigger("my-channel", "my-event", data)
+		err := config.NewPusherClient().Trigger("my-channel", "my-event", data)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -95,7 +88,7 @@ func (h *strapiHandler) PutHandler(c echo.Context) error {
 
 	if c.Request().URL.Path == "/api/quest-statuses" {
 		data := map[string]string{"status": "true"}
-		err := pusherClient.Trigger("my-channel", "my-event", data)
+		err := config.NewPusherClient().Trigger("my-channel", "my-event", data)
 		if err != nil {
 			log.Fatal(err)
 		}
